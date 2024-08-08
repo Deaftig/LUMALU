@@ -7,12 +7,11 @@
 class Menu {
 public:
     Menu();
-    void handleInput(sf::Event& event);
+    void handleInput(event);
     void update();
     void render(sf::RenderWindow& window);
 
 private:
-    sf::Event event;
 };
 
 #endif

@@ -1,3 +1,8 @@
+/*
+LOGIC FOR THE PROGRAM
+-STATE MANAGEMENT!
+*/
+
 // Header-Dateien
 #include "engine.h"
 #include "menu.h"
@@ -14,26 +19,26 @@ Engine::Engine()
 void Engine::run() {
 
     enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD };
-    State currentState = STATE_MENU;
+    State currentState = STATE_MENU;                                //Init the enum to be STATE_MENU
 
-    Menu menu;
-    Play play;
-    Scoreboard scoreboard;
+    Menu menu;                  // ???? what are those 3?
+    Play play;                  //
+    Scoreboard scoreboard;      //
 
     while (window.isOpen()) {
         switch (currentState) {
         case STATE_MENU:
-            menu.handleInput(window);
+            menu.handleInput(event);        // ??? need a crash course for things in brackets
             menu.update();
-            menu.render(window);
+            menu.render(window);            // ??? need....
             break;
         case STATE_PLAY:
-            play.handleInput(window);
+            play.handleInput(event);        // ??? n....
             play.update();
-            play.render(window);
+            play.render(window);            // ???
             break;
         case STATE_SCOREBOARD:
-            scoreboard.handleInput(window);
+            scoreboard.handleInput(event);
             scoreboard.update();
             scoreboard.render(window);
             break;

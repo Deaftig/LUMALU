@@ -1,3 +1,7 @@
+/*
+LOGIC FOR SCOREBOARD 
+-NEEDS TO DISPLAY THE 10 BEST PLAYERS WITH SCORE FROM scoreboard.txt
+*/
 // SFML-Bibliotheken
 #include <SFML/Graphics.hpp>
 

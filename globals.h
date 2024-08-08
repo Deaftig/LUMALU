@@ -1,3 +1,6 @@
+/*
+ALL OF THEM GLOBAL CONSTANTS
+*/
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
