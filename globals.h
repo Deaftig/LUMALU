@@ -1,6 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+// SFML-Bibliotheken
 #include <SFML/Graphics.hpp>
 
 namespace gb

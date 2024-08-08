@@ -1,11 +1,17 @@
+// Header-Dateien
 #include "engine.h"
 #include "menu.h"
 #include "play.h"
 #include "scoreboard.h"
 #include "globals.h"
 
+
+Engine::Engine()
+{
+    initWindow();
+}
+
 void Engine::run() {
-    sf::RenderWindow window(sf::VideoMode(gb::winWidth, gb::winHeight), "SFML Game",sf::Style::None);
 
     enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD };
     State currentState = STATE_MENU;
@@ -33,6 +39,11 @@ void Engine::run() {
             break;
         }
     }
+}
+
+void Engine::initWindow()
+{
+    sf::RenderWindow window(sf::VideoMode(gb::winWidth, gb::winHeight), "SFML Game", sf::Style::None);
 }
 
 

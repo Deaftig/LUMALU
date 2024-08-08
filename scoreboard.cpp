@@ -1,4 +1,7 @@
+// SFML-Bibliotheken
 #include <SFML/Graphics.hpp>
+
+// Header-Dateien
 #include "globals.h"
 #include "scoreboard.h"
 

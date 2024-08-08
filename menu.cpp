@@ -1,6 +1,8 @@
+// Header-Dateien
 #include "globals.h"
 #include "menu.h"
 
+// Basis-Bibliotheken
 #include <iostream>
 
 Menu::Menu()
