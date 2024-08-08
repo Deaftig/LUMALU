@@ -9,7 +9,7 @@ public:
     Menu();
     void handleInput(event);
     void update();
-    void render(sf::RenderWindow& window);
+    void render(sf::RenderWindow& window);      // ???? why the &?
 
 private:
 };

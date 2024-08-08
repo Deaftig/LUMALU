@@ -32,7 +32,7 @@ void Menu::update()
 
 void Menu::render(sf::RenderWindow& window)
 {
-	sf::CircleShape shape(50);
+	sf::CircleShape shape(50);							// just fooling around to get something on my screen
 	shape.setFillColor(sf::Color(100, 250, 50));
 }
 
