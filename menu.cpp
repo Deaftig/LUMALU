@@ -54,11 +54,14 @@ int Menu::handleInput(sf::Event& event)
             }
             else if (selectedMenuItem == 2)
             {
-                return 3; // BEENDEN
+                return 0; // BEENDEN
             }
         }
+        if (event.key.code == sf::Keyboard::Escape)
+        {
+            return 0;
+        }
     }
-    return 0;
 }
 
 void Menu::initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
@@ -68,7 +71,11 @@ void Menu::initText(sf::Text& text, const std::string& string, unsigned int size
     text.setCharacterSize(size);
     text.setFillColor(color);
     text.setPosition(position);
-    text.setOrigin(gb::winWidth / 2, gb::winHeight / 2);
+
+    sf::FloatRect textBounds = text.getLocalBounds();
+
+    text.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
+    text.setPosition(position);
 }
 
 void Menu::updateTextColors()

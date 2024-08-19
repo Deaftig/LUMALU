@@ -6,6 +6,9 @@
 class Game
 {
 public:
+	Game();
+	void render(sf::RenderWindow& window);
+	int handleInput(sf::Event event);
 private:
 };
 
