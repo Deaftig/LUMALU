@@ -27,7 +27,7 @@
     <ClCompile Include="menu.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="play.cpp">
+    <ClCompile Include="game.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,7 +44,7 @@
     <ClInclude Include="globals.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="play.h">
+    <ClInclude Include="game.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

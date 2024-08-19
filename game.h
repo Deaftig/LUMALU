@@ -1,12 +1,12 @@
-#ifndef SCOREBOARD_H
-#define SCOREBOARD_H
+#ifndef GAME_H
+#define GAME_H
 
 #include <SFML/Graphics.hpp>
 
-class Scoreboard
+class Game
 {
 public:
-	Scoreboard();
+	Game();
 	void render(sf::RenderWindow& window);
 	int handleInput(sf::Event event);
 private:
