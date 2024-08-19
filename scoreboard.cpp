@@ -1,3 +1,5 @@
+/* LUMALU
+*/
 #include "scoreboard.h"
 #include "globals.h"
 

@@ -1,5 +1,4 @@
-/*
-ALL OF THEM GLOBAL CONSTANTS
+/* LUMALU
 */
 #ifndef GLOBALS_H
 #define GLOBALS_H

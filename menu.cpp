@@ -1,3 +1,5 @@
+/* LUMALU
+*/
 #include "menu.h"
 #include "globals.h"
 #include <iostream>

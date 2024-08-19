@@ -1,3 +1,5 @@
+/* LUMALU
+*/
 #include "game.h"
 #include "globals.h"
 
