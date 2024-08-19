@@ -1,9 +1,9 @@
-#ifndef SCOREBOARD_H
-#define SCOREBOARD_H
+#ifndef GAME_H
+#define GAME_H
 
 #include <SFML/Graphics.hpp>
 
-class Scoreboard
+class Game
 {
 public:
 private:

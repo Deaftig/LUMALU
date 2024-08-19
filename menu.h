@@ -1,17 +1,24 @@
 #ifndef MENU_H
 #define MENU_H
 
-// SFML-Bibliothek
 #include <SFML/Graphics.hpp>
 
 class Menu {
 public:
     Menu();
-    void handleInput(event);
-    void update();
-    void render(sf::RenderWindow& window);      // ???? why the &?
+    void render(sf::RenderWindow& window);
+    int handleInput(sf::Event& event);
 
 private:
+    sf::Font font;
+    sf::Text titleText;
+    sf::Text startText;
+    sf::Text highscoreText;
+    sf::Text quitText;
+    int selectedMenuItem;
+
+    void initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
+    void updateTextColors();
 };
 
 #endif
