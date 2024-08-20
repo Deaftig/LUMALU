@@ -1,4 +1,4 @@
-/*
+/* LUMALU
 Diese Datei beinhaltet die Funktion main(),
 welche den Beginn und Ende des Programms symbolisiert.
 

@@ -1,3 +1,5 @@
+/* LUMALU
+*/
 #include "menu.h"
 #include "globals.h"
 #include <iostream>
@@ -25,7 +27,6 @@ void Menu::render(sf::RenderWindow& window)
     window.draw(startText);
     window.draw(highscoreText);
     window.draw(quitText);
-    window.display();
 }
 
 int Menu::handleInput(sf::Event& event)
