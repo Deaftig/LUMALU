@@ -1,5 +1,3 @@
-/* LUMALU
-*/
 #include "engine.h"
 #include "menu.h"
 #include "game.h"
@@ -63,11 +61,6 @@ void Engine::run() {
         window.display();  // Das Fenster nach dem Zeichnen anzeigen
     }
 }
-
-
-
-
-
 
 void Engine::initWindow()
 {

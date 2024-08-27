@@ -6,10 +6,8 @@
 
 Menu::Menu()
 {
-    if (!font.loadFromFile("Fonts/Dimbo Regular.ttf"))
-    {
-        std::cerr << "Fehler beim Laden der Schriftart" << std::endl;
-    }
+    font.loadFromFile("Fonts/Dimbo Regular.ttf");
+
 
     initText(titleText, "SNAKE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.2));
     initText(startText, "START", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.4));
