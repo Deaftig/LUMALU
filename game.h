@@ -14,8 +14,10 @@ public:
 private:
 	sf::Font font;
 	sf::Text scoreText;
+	sf::CircleShape fruit;
 
 	void renderArena(sf::RenderWindow& window);
+	void renderFruit(sf::RenderWindow& window);
 	void initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
 };
 

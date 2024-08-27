@@ -3,6 +3,9 @@
 #include "game.h"
 #include "globals.h"
 
+#include <cstdlib>
+#include <ctime>
+
 Game::Game()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
@@ -15,6 +18,7 @@ void Game::render(sf::RenderWindow& window)
     window.clear(gb::colBackground);
     window.draw(scoreText);
     renderArena(window);
+    renderFruit(window);
 }
 
 int Game::handleInput(sf::Event event)
@@ -45,6 +49,16 @@ void Game::renderArena(sf::RenderWindow& window)
             }
         }
     }
+}
+
+void Game::renderFruit(sf::RenderWindow& window)
+{
+    fruit.setRadius(gb::blockSize / 2);
+    fruit.setFillColor(gb::colFruit);
+    int x = std::rand() % gb::arenaWidth;
+    int y = std::rand() % gb::arenaHeight;
+    fruit.setPosition(x * gb::blockSize, y * gb::blockSize);
+
 }
 
 void Game::initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
