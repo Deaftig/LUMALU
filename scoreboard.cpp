@@ -7,10 +7,7 @@
 
 Scoreboard::Scoreboard()
 {
-    if (!font.loadFromFile("Fonts/Dimbo Regular.ttf"))
-    {
-        std::cerr << "Fehler beim Laden der Schriftart" << std::endl;
-    }
+    font.loadFromFile("Fonts/Dimbo Regular.ttf");
 
     initText(titleText, "BESTENLISTE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.1));
 }
