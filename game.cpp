@@ -37,8 +37,8 @@ void Game::spawnFruit()
     fruit.setFillColor(gb::colFruit);
     int x = std::rand() % gb::arenaWidth;
     int y = std::rand() % gb::arenaHeight;
-    fruit.setPosition(x * gb::blockSize + gb::blockSize / 2 - fruit.getRadius(),
-                      y * gb::blockSize + gb::blockSize / 2 - fruit.getRadius());
+    fruit.setPosition(x * gb::blockSize,
+                      y * gb::blockSize);
 }
 
 void Game::renderArena(sf::RenderWindow& window)
