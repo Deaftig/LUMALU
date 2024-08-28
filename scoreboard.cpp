@@ -18,7 +18,7 @@ void Scoreboard::render(sf::RenderWindow& window)
     window.draw(titleText);
 }
 
-int Scoreboard::handleInput(sf::Event event)
+int Scoreboard::handleInput(sf::Event& event)
 {
     if (event.key.code == sf::Keyboard::Escape)
     {

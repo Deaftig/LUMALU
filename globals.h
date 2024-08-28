@@ -27,6 +27,8 @@ namespace gb
 	const int blockSize = 30;
 	const int arenaWidth = 18;
 	const int arenaHeight = 16;
+	const int xOffset = (gb::winWidth - (gb::arenaWidth * gb::blockSize)) / 2;
+	const int yOffset = gb::winHeight - (gb::arenaHeight * gb::blockSize) - 10;
 }
 
 #endif

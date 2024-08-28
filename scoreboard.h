@@ -10,7 +10,7 @@ class Scoreboard
 public:
 	Scoreboard();
 	void render(sf::RenderWindow& window);
-	int handleInput(sf::Event event);
+	int handleInput(sf::Event& event);
 private:
 	sf::Font font;
 	sf::Text titleText;
