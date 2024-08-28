@@ -57,10 +57,10 @@ void Game::spawnFruit()
 {
     fruit.setRadius(gb::blockSize/2);
     fruit.setFillColor(gb::colFruit);
-    int x = std::rand() % gb::arenaWidth;
-    int y = std::rand() % gb::arenaHeight;
-    fruit.setPosition(x * gb::blockSize + gb::xOffset,
-                      y * gb::blockSize + gb::yOffset);
+    int randomX = std::rand() % gb::arenaWidth;
+    int randomY = std::rand() % gb::arenaHeight;
+    fruit.setPosition(randomX * gb::blockSize + gb::xOffset,
+                      randomY * gb::blockSize + gb::yOffset);
 }
 
 void Game::spawnSnake()
