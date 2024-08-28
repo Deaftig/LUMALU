@@ -7,6 +7,9 @@
 
 class Engine {
 public:
+    Menu menu;
+    Game game;
+    Scoreboard scoreboard;
 
     sf::RenderWindow window;
     sf::Event event;
@@ -19,7 +22,6 @@ private:
     State currentState = STATE_MENU;
 
     void initWindow();
-
     void handleInput();
     void update();
     void render();

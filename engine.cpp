@@ -11,10 +11,6 @@ Engine::Engine()
 
 void Engine::run() {
 
-    Menu menu;
-    Game game;
-    Scoreboard scoreboard;
-
     while (window.isOpen())
     {
         handleInput();
