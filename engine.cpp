@@ -1,7 +1,5 @@
 #include "engine.h"
-#include "menu.h"
-#include "game.h"
-#include "scoreboard.h"
+
 #include "globals.h"
 
 Engine::Engine()
@@ -46,7 +44,6 @@ void Engine::handleInput() {
         }
     }
 
-
 void Engine::render(){
         window.clear(gb::colBackground);
         switch (currentState)
@@ -63,7 +60,6 @@ void Engine::render(){
             break;
         }
         window.display();  
-    }
 }
 
 void Engine::update() {
