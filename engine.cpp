@@ -11,7 +11,6 @@ Engine::Engine()
 
 void Engine::run() {
 
-
     Menu menu;
     Game game;
     Scoreboard scoreboard;
@@ -50,9 +49,10 @@ void Engine::handleInput() {
             }
         }
     }
-}
+
+
 void Engine::render(){
-        window.clear(gb::colBackground);  
+        window.clear(gb::colBackground);
         switch (currentState)
         {
         case STATE_MENU:

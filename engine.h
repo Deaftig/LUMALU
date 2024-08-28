@@ -7,6 +7,7 @@
 
 class Engine {
 public:
+
     sf::RenderWindow window;
     sf::Event event;
 
