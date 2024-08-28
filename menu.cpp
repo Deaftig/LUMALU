@@ -9,10 +9,11 @@ Menu::Menu()
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
 
 
-    initText(titleText, "SNAKE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.2));
-    initText(startText, "START", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.4));
-    initText(highscoreText, "BESTENLISTE", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.5));
-    initText(quitText, "BEENDEN", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.6));
+    initCenteredText(titleText, "SNAKE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.2));
+    initCenteredText(startText, "START", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.4));
+    initCenteredText(highscoreText, "BESTENLISTE", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.5));
+    initCenteredText(quitText, "BEENDEN", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.6));
+    initCenteredText(helpText, "Steuerung mit W,A,S,D, Enter und Escape", 20, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.95));
 
     selectedMenuItem = 0;
     updateTextColors();
@@ -25,6 +26,7 @@ void Menu::render(sf::RenderWindow& window)
     window.draw(startText);
     window.draw(highscoreText);
     window.draw(quitText);
+    window.draw(helpText);
 }
 
 int Menu::handleInput(sf::Event& event)
@@ -63,7 +65,7 @@ int Menu::handleInput(sf::Event& event)
     }
 }
 
-void Menu::initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
+void Menu::initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
 {
     text.setFont(font);
     text.setString(string);

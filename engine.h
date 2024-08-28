@@ -14,7 +14,14 @@ public:
     void run();
 
 private:
+    enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD };
+    State currentState = STATE_MENU;
+
     void initWindow();
+
+    void handleInput();
+    void update();
+    void render();
 };
 
 #endif

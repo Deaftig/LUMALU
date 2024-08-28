@@ -10,8 +10,7 @@ Engine::Engine()
 }
 
 void Engine::run() {
-    enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD };
-    State currentState = STATE_MENU;
+
 
     Menu menu;
     Game game;
@@ -19,6 +18,13 @@ void Engine::run() {
 
     while (window.isOpen())
     {
+        handleInput();
+        update();
+        render();
+    }
+}
+
+void Engine::handleInput() {
         // Ereignisverarbeitung
         while (window.pollEvent(event))
         {
@@ -27,38 +33,53 @@ void Engine::run() {
             {
             case STATE_MENU:
                 action = menu.handleInput(event);
-                if (action == 1)        { currentState = STATE_PLAY; }
-                else if (action == 2)   { currentState = STATE_SCOREBOARD; }
-                else if (action == 0)   { window.close(); }
+                if (action == 1) { currentState = STATE_PLAY; }
+                else if (action == 2) { currentState = STATE_SCOREBOARD; }
+                else if (action == 0) { window.close(); }
                 break;
 
             case STATE_PLAY:
                 action = game.handleInput(event);
-                if (action == 3)        { currentState = STATE_MENU; }
+                if (action == 3) { currentState = STATE_MENU; }
                 break;
 
             case STATE_SCOREBOARD:
                 action = scoreboard.handleInput(event);
-                if (action == 3)        { currentState = STATE_MENU; }
+                if (action == 3) { currentState = STATE_MENU; }
                 break;
             }
         }
-
-        // Rendern des aktuellen Zustands
-        window.clear(gb::colBackground);  // Hintergrund aktualisieren
+    }
+}
+void Engine::render(){
+        window.clear(gb::colBackground);  
         switch (currentState)
         {
         case STATE_MENU:
             menu.render(window);
             break;
         case STATE_PLAY:
+            game.update();
             game.render(window);
             break;
         case STATE_SCOREBOARD:
             scoreboard.render(window);
             break;
         }
-        window.display();  // Das Fenster nach dem Zeichnen anzeigen
+        window.display();  
+    }
+}
+
+void Engine::update() {
+    switch (currentState)
+    {
+    case STATE_MENU:
+        break;
+    case STATE_PLAY:
+        game.update();
+        break;
+    case STATE_SCOREBOARD:
+        break;
     }
 }
 

@@ -9,7 +9,7 @@ Game::Game()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
 
-    initText(scoreText, "Punkte: ", 70, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.1));
+    initText(scoreText, "Punkte: ", 70, gb::colTextOn, sf::Vector2f(gb::winWidth / 4, gb::winHeight * 0.025));
 
     spawnFruit();
     spawnSnake();
@@ -103,7 +103,7 @@ void Game::renderSnake(sf::RenderWindow& window)
     for (const auto& segment : snake) {
         sf::RectangleShape snakeSegment(sf::Vector2f(gb::blockSize, gb::blockSize));
         snakeSegment.setPosition(segment.x * gb::blockSize + gb::xOffset,
-            segment.y * gb::blockSize + gb::yOffset);
+                                 segment.y * gb::blockSize + gb::yOffset);
         snakeSegment.setFillColor(gb::colSnake);
         //snakeSegment.setOutlineThickness(-5);
         //snakeSegment.setOutlineColor(gb::colSecondary);
@@ -118,10 +118,5 @@ void Game::initText(sf::Text& text, const std::string& string, unsigned int size
     text.setString(string);
     text.setCharacterSize(size);
     text.setFillColor(color);
-    text.setPosition(position);
-
-    sf::FloatRect textBounds = text.getLocalBounds();
-
-    text.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
     text.setPosition(position);
 }

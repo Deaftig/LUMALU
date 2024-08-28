@@ -15,7 +15,7 @@ private:
 	sf::Font font;
 	sf::Text titleText;
 
-	void initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
+	void initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
 };
 
 #endif

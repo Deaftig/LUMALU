@@ -9,7 +9,7 @@ Scoreboard::Scoreboard()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
 
-    initText(titleText, "BESTENLISTE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.1));
+    initCenteredText(titleText, "BESTENLISTE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.1));
 }
 
 void Scoreboard::render(sf::RenderWindow& window)
@@ -26,7 +26,7 @@ int Scoreboard::handleInput(sf::Event& event)
     }
 }
 
-void Scoreboard::initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
+void Scoreboard::initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
 {
     text.setFont(font);
     text.setString(string);
