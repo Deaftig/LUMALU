@@ -13,7 +13,6 @@ Game::Game()
 
     spawnFruit();
     spawnSnake();
-    direction = sf::Vector2i(1, 0);
 }
 
 void Game::render(sf::RenderWindow& window)
@@ -52,6 +51,8 @@ void Game::update()
     snake.pop_back();
 }
 
+
+
 void Game::spawnFruit()
 {
     fruit.setRadius(gb::blockSize/2);
@@ -80,6 +81,7 @@ void Game::renderArena(sf::RenderWindow& window)
             sf::RectangleShape block(sf::Vector2f(gb::blockSize, gb::blockSize));
             block.setPosition(j * gb::blockSize + gb::xOffset,
                               i * gb::blockSize + gb::yOffset);
+            
 
             if ((i + j) % 2 == 0)
                 block.setFillColor(gb::colArena1);
@@ -103,6 +105,8 @@ void Game::renderSnake(sf::RenderWindow& window)
         snakeSegment.setPosition(segment.x * gb::blockSize + gb::xOffset,
             segment.y * gb::blockSize + gb::yOffset);
         snakeSegment.setFillColor(gb::colSnake);
+        //snakeSegment.setOutlineThickness(-5);
+        //snakeSegment.setOutlineColor(gb::colSecondary);
 
         window.draw(snakeSegment);
     }

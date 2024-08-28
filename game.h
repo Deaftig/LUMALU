@@ -22,7 +22,6 @@ private:
 	std::vector<sf::Vector2i> snake;
 	sf::Vector2i direction;
 
-
 	void spawnFruit();
 	void spawnSnake();
 	void renderArena(sf::RenderWindow& window);
