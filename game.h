@@ -15,9 +15,6 @@ private:
 	sf::Font font;
 	sf::Text scoreText;
 	sf::CircleShape fruit;
-
-	int x, y = 0;
-	bool activeFruit = false;
 	
 	void spawnFruit();
 	void renderArena(sf::RenderWindow& window);

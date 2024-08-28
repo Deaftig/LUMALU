@@ -33,12 +33,15 @@ int Game::handleInput(sf::Event event)
 
 void Game::spawnFruit()
 {
+    int xOffset = (gb::winWidth - (gb::arenaWidth * gb::blockSize)) / 2;
+    int yOffset = gb::winHeight - (gb::arenaHeight * gb::blockSize) - 10;
+
     fruit.setRadius(gb::blockSize/2);
     fruit.setFillColor(gb::colFruit);
     int x = std::rand() % gb::arenaWidth;
     int y = std::rand() % gb::arenaHeight;
-    fruit.setPosition(x * gb::blockSize,
-                      y * gb::blockSize);
+    fruit.setPosition(x * gb::blockSize + xOffset,
+                      y * gb::blockSize + yOffset);
 }
 
 void Game::renderArena(sf::RenderWindow& window)
