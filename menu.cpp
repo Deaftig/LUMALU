@@ -8,7 +8,6 @@ Menu::Menu()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
 
-
     initCenteredText(titleText, "SNAKE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.2));
     initCenteredText(startText, "START", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.4));
     initCenteredText(highscoreText, "BESTENLISTE", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.5));
@@ -16,17 +15,11 @@ Menu::Menu()
     initCenteredText(helpText, "Steuerung mit W,A,S,D, Enter und Escape", 20, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.95));
 
     selectedMenuItem = 0;
-    updateTextColors();
 }
 
-void Menu::render(sf::RenderWindow& window)
+void Menu::update()
 {
-    window.clear(gb::colBackground);
-    window.draw(titleText);
-    window.draw(startText);
-    window.draw(highscoreText);
-    window.draw(quitText);
-    window.draw(helpText);
+    updateTextColors();
 }
 
 int Menu::handleInput(sf::Event& event)
@@ -36,12 +29,10 @@ int Menu::handleInput(sf::Event& event)
         if (event.key.code == sf::Keyboard::W)
         {
             selectedMenuItem = (selectedMenuItem - 1 + 3) % 3;
-            updateTextColors();
         }
         else if (event.key.code == sf::Keyboard::S)
         {
             selectedMenuItem = (selectedMenuItem + 1) % 3;
-            updateTextColors();
         }
         else if (event.key.code == sf::Keyboard::Enter)
         {
@@ -63,6 +54,16 @@ int Menu::handleInput(sf::Event& event)
             return 0;
         }
     }
+}
+
+void Menu::render(sf::RenderWindow& window)
+{
+    window.clear(gb::colBackground);
+    window.draw(titleText);
+    window.draw(startText);
+    window.draw(highscoreText);
+    window.draw(quitText);
+    window.draw(helpText);
 }
 
 void Menu::initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)

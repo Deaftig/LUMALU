@@ -6,13 +6,13 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-class Game
-{
+
+class Game {
 public:
 	Game();
-	void render(sf::RenderWindow& window);
 	int handleInput(sf::Event& event);
 	void update();
+	void render(sf::RenderWindow& window);
 
 private:
 	sf::Font font;

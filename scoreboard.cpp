@@ -12,18 +12,23 @@ Scoreboard::Scoreboard()
     initCenteredText(titleText, "BESTENLISTE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.1));
 }
 
-void Scoreboard::render(sf::RenderWindow& window)
-{
-    window.clear(gb::colBackground);
-    window.draw(titleText);
-}
-
 int Scoreboard::handleInput(sf::Event& event)
 {
     if (event.key.code == sf::Keyboard::Escape)
     {
         return 3;
     }
+}
+
+void Scoreboard::update()
+{
+
+}
+
+void Scoreboard::render(sf::RenderWindow& window)
+{
+    window.clear(gb::colBackground);
+    window.draw(titleText);
 }
 
 void Scoreboard::initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)

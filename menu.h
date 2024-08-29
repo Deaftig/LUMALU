@@ -5,11 +5,14 @@
 
 #include <SFML/Graphics.hpp>
 
+
+
 class Menu {
 public:
     Menu();
-    void render(sf::RenderWindow& window);
     int handleInput(sf::Event& event);
+    void update();
+    void render(sf::RenderWindow& window);
 
 private:
     sf::Font font;
@@ -19,6 +22,8 @@ private:
     sf::Text quitText;
     sf::Text helpText;
     int selectedMenuItem;
+
+
 
     void initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
     void updateTextColors();

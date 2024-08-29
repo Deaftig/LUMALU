@@ -5,12 +5,15 @@
 
 #include <SFML/Graphics.hpp>
 
-class Scoreboard
-{
+
+
+class Scoreboard {
 public:
 	Scoreboard();
-	void render(sf::RenderWindow& window);
 	int handleInput(sf::Event& event);
+	void update();
+	void render(sf::RenderWindow& window);
+
 private:
 	sf::Font font;
 	sf::Text titleText;

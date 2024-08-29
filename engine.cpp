@@ -4,7 +4,7 @@
 
 Engine::Engine()
 {
-    initWindow();
+   window.create(sf::VideoMode(gb::winWidth, gb::winHeight), "SFML Game", sf::Style::None);
 }
 
 void Engine::run() {
@@ -16,6 +16,7 @@ void Engine::run() {
         render();
     }
 }
+
 
 void Engine::handleInput() {
         // Ereignisverarbeitung
@@ -44,6 +45,21 @@ void Engine::handleInput() {
         }
     }
 
+void Engine::update() {
+    switch (currentState)
+    {
+    case STATE_MENU:
+        menu.update();
+        break;
+    case STATE_PLAY:
+        game.update();
+        break;
+    case STATE_SCOREBOARD:
+        scoreboard.update();
+        break;
+    }
+}
+
 void Engine::render(){
         window.clear(gb::colBackground);
         switch (currentState)
@@ -52,7 +68,6 @@ void Engine::render(){
             menu.render(window);
             break;
         case STATE_PLAY:
-            game.update();
             game.render(window);
             break;
         case STATE_SCOREBOARD:
@@ -62,20 +77,6 @@ void Engine::render(){
         window.display();  
 }
 
-void Engine::update() {
-    switch (currentState)
-    {
-    case STATE_MENU:
-        break;
-    case STATE_PLAY:
-        game.update();
-        break;
-    case STATE_SCOREBOARD:
-        break;
-    }
-}
 
-void Engine::initWindow()
-{
-    window.create(sf::VideoMode(gb::winWidth, gb::winHeight), "SFML Game", sf::Style::None);
-}
+
+
