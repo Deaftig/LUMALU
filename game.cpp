@@ -4,7 +4,7 @@
 #include "globals.h"
 
 
-
+// PUBLIC
 Game::Game()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
@@ -15,16 +15,7 @@ Game::Game()
     spawnSnake();
 }
 
-void Game::render(sf::RenderWindow& window)
-{
-    window.clear(gb::colBackground);
-    window.draw(scoreText);
-    renderArena(window);
-    renderFruit(window);
-    renderSnake(window);
-
-}
-
+// IPO
 int Game::handleInput(sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed)
@@ -51,8 +42,18 @@ void Game::update()
     snake.pop_back();
 }
 
+void Game::render(sf::RenderWindow& window)
+{
+    window.clear(gb::colBackground);
+    window.draw(scoreText);
+    renderArena(window);
+    window.draw(fruit);
+    renderSnake(window);
 
+}
 
+// --------------------------------------
+// PRIVATE
 void Game::spawnFruit()
 {
     fruit.setRadius(gb::blockSize/2);
@@ -91,11 +92,6 @@ void Game::renderArena(sf::RenderWindow& window)
             window.draw(block);
         }
     }
-}
-
-void Game::renderFruit(sf::RenderWindow& window)
-{
-    window.draw(fruit);
 }
 
 void Game::renderSnake(sf::RenderWindow& window)

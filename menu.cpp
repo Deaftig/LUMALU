@@ -4,6 +4,7 @@
 #include "globals.h"
 #include <iostream>
 
+// PUBLIC
 Menu::Menu()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
@@ -17,11 +18,7 @@ Menu::Menu()
     selectedMenuItem = 0;
 }
 
-void Menu::update()
-{
-    updateTextColors();
-}
-
+// IPO
 int Menu::handleInput(sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed)
@@ -56,6 +53,11 @@ int Menu::handleInput(sf::Event& event)
     }
 }
 
+void Menu::update()
+{
+    updateTextColors();
+}
+
 void Menu::render(sf::RenderWindow& window)
 {
     window.clear(gb::colBackground);
@@ -66,6 +68,8 @@ void Menu::render(sf::RenderWindow& window)
     window.draw(helpText);
 }
 
+// --------------------------------------
+// PRIVATE
 void Menu::initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
 {
     text.setFont(font);

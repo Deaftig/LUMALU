@@ -2,15 +2,16 @@
 
 #include "globals.h"
 
+// PUBLIC
 Engine::Engine()
 {
    window.create(sf::VideoMode(gb::winWidth, gb::winHeight), "SFML Game", sf::Style::None);
 }
 
+// IPO
 void Engine::run() {
 
-    while (window.isOpen())
-    {
+    while (window.isOpen()) {
         handleInput();
         update();
         render();
@@ -20,11 +21,9 @@ void Engine::run() {
 
 void Engine::handleInput() {
         // Ereignisverarbeitung
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)) {
             int action = 0; //Zurücksetzen des Integer
-            switch (currentState)
-            {
+            switch (currentState) {
             case STATE_MENU:
                 action = menu.handleInput(event);
                 if (action == 1) { currentState = STATE_PLAY; }
@@ -46,8 +45,7 @@ void Engine::handleInput() {
     }
 
 void Engine::update() {
-    switch (currentState)
-    {
+    switch (currentState) {
     case STATE_MENU:
         menu.update();
         break;
@@ -60,10 +58,9 @@ void Engine::update() {
     }
 }
 
-void Engine::render(){
+void Engine::render() {
         window.clear(gb::colBackground);
-        switch (currentState)
-        {
+        switch (currentState) {
         case STATE_MENU:
             menu.render(window);
             break;
@@ -76,7 +73,3 @@ void Engine::render(){
         }
         window.display();  
 }
-
-
-
-

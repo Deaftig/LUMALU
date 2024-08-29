@@ -25,7 +25,6 @@ private:
 	void spawnFruit();
 	void spawnSnake();
 	void renderArena(sf::RenderWindow& window);
-	void renderFruit(sf::RenderWindow& window);
 	void renderSnake(sf::RenderWindow& window);
 
 	void initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
