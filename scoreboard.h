@@ -1,7 +1,7 @@
 /* LUMALU
 */
-#ifndef SCOREBOARD_H
-#define SCOREBOARD_H
+#ifndef SCOREBOARD
+#define SCOREBOARD
 
 #include <SFML/Graphics.hpp>
 
@@ -11,7 +11,7 @@ class Scoreboard {
 public:
 	Scoreboard();
 	int handleInput(sf::Event& event);
-	void update(float deltaTime);
+	void update();
 	void render(sf::RenderWindow& window);
 
 private:

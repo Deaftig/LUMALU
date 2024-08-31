@@ -1,7 +1,7 @@
 /* LUMALU
 */
-#ifndef GLOBALS_H
-#define GLOBALS_H
+#ifndef GLOBALS
+#define GLOBALS
 
 // SFML-Bibliotheken
 #include <SFML/Graphics.hpp>

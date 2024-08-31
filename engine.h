@@ -1,30 +1,33 @@
-/* LUMALU
-*/
-#ifndef ENGINE_H
-#define ENGINE_H
+// Header Guards
+#ifndef ENGINE
+#define ENGINE
 
+// Header-Dateien
 #include "menu.h"
 #include "game.h"
 #include "scoreboard.h"
 
+// SFML
 #include <SFML/Graphics.hpp>
 
+// Engine
 class Engine {
 public:
     Menu menu;
     Game game;
     Scoreboard scoreboard;
 
+    // SFML
     sf::RenderWindow window;
     sf::Event event;
-    sf::Clock deltaClock;
+    sf::Clock clock;
+    sf::Time time;
 
-    float deltaTime;
-
+    // Funktionen
     Engine();
-    void run();
+    void run();             
     void handleInput();
-    void update(float deltaTime);
+    void update();
     void render();
 
 private:

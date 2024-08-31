@@ -19,8 +19,28 @@ Menu::Menu()
 }
 
 // IPO
-int Menu::handleInput(sf::Event& event)
+int Menu::handleInput(sf::Event& event) {
+    return processInput(event);
+}
+
+void Menu::update()
 {
+    updateTextColors();
+}
+
+void Menu::render(sf::RenderWindow& window)
+{
+    window.clear(gb::colBackground);
+    window.draw(titleText);
+    window.draw(startText);
+    window.draw(highscoreText);
+    window.draw(quitText);
+    window.draw(helpText);
+}
+
+// --------------------------------------
+// PRIVATE
+int Menu::processInput(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed)
     {
         if (event.key.code == sf::Keyboard::W)
@@ -53,23 +73,7 @@ int Menu::handleInput(sf::Event& event)
     }
 }
 
-void Menu::update(float deltaTime)
-{
-    updateTextColors();
-}
 
-void Menu::render(sf::RenderWindow& window)
-{
-    window.clear(gb::colBackground);
-    window.draw(titleText);
-    window.draw(startText);
-    window.draw(highscoreText);
-    window.draw(quitText);
-    window.draw(helpText);
-}
-
-// --------------------------------------
-// PRIVATE
 void Menu::initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
 {
     text.setFont(font);

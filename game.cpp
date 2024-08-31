@@ -11,8 +11,7 @@ Game::Game()
 
     initText(scoreText, "Punkte: ", 70, gb::colTextOn, sf::Vector2f(gb::winWidth / 4, gb::winHeight * 0.025));
 
-    spawnFruit();
-    spawnSnake();
+    moveInterval = sf::seconds(0.5f);
 }
 
 // IPO
@@ -20,26 +19,26 @@ int Game::handleInput(sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed)
     {
-        if (event.key.code == sf::Keyboard::W && direction.y == 0)
-            direction = sf::Vector2i(0, -1);  // Nach oben
-        else if (event.key.code == sf::Keyboard::A && direction.x == 0)
-            direction = sf::Vector2i(-1, 0);  // Nach links
-        else if (event.key.code == sf::Keyboard::S && direction.y == 0)
-            direction = sf::Vector2i(0, 1);   // Nach unten
-        else if (event.key.code == sf::Keyboard::D && direction.x == 0)
-            direction = sf::Vector2i(1, 0);   // Nach rechts
-        else if (event.key.code == sf::Keyboard::Escape)
+        if (snakeActive == true) {
+            if (event.key.code == sf::Keyboard::W && direction.y == 0)
+                direction = sf::Vector2i(0, -1);  // Nach oben
+            else if (event.key.code == sf::Keyboard::A && direction.x == 0)
+                direction = sf::Vector2i(-1, 0);  // Nach links
+            else if (event.key.code == sf::Keyboard::S && direction.y == 0)
+                direction = sf::Vector2i(0, 1);   // Nach unten
+            else if (event.key.code == sf::Keyboard::D && direction.x == 0)
+                direction = sf::Vector2i(1, 0);   // Nach rechts
+        }
+
+        if (event.key.code == sf::Keyboard::Escape)
             return 3;
     }
 }
 
-void Game::update(float deltaTime)
+void Game::update()
 {
-    sf::Vector2i newHeadPosition = snake.front() + direction;
-
-    // Die Schlange bewegt sich
-    snake.insert(snake.begin(), newHeadPosition);  // Neuer Kopf
-    snake.pop_back();
+    updateFruit();
+    updateSnake();
 }
 
 void Game::render(sf::RenderWindow& window)
@@ -47,13 +46,14 @@ void Game::render(sf::RenderWindow& window)
     window.clear(gb::colBackground);
     window.draw(scoreText);
     renderArena(window);
-    window.draw(fruit);
+    renderFruit(window);
     renderSnake(window);
 
 }
 
 // --------------------------------------
 // PRIVATE
+// SPAWN
 void Game::spawnFruit()
 {
     fruit.setRadius(gb::blockSize/2);
@@ -62,10 +62,12 @@ void Game::spawnFruit()
     int randomY = std::rand() % gb::arenaHeight;
     fruit.setPosition(randomX * gb::blockSize + gb::xOffset,
                       randomY * gb::blockSize + gb::yOffset);
+    fruitActive = true;
 }
 
 void Game::spawnSnake()
 {
+
     int initialLength = 5;
     int startX = gb::arenaWidth / 2;
     int startY = gb::arenaHeight / 2;
@@ -73,7 +75,26 @@ void Game::spawnSnake()
     for (int i = 0; i < initialLength; i++) {
         snake.push_back(sf::Vector2i(startX - i, startY));
     }
+    direction = sf::Vector2i(1, 0);
+    snakeActive = true;
 }
+
+// UPDATE
+void Game::updateFruit()
+{
+    if (fruitActive == false) {
+        spawnFruit();
+    }
+}
+
+void Game::updateSnake()
+{
+    if (snakeActive == false) {
+        spawnSnake();
+    }
+}
+
+
 
 void Game::renderArena(sf::RenderWindow& window)
 {
@@ -92,6 +113,11 @@ void Game::renderArena(sf::RenderWindow& window)
             window.draw(block);
         }
     }
+}
+
+void Game::renderFruit(sf::RenderWindow& window)
+{
+    
 }
 
 void Game::renderSnake(sf::RenderWindow& window)

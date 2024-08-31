@@ -10,10 +10,13 @@ Engine::Engine() {
 // IPO
 void Engine::run() {
     while (window.isOpen()) {
-
-        handleInput();
-        update(deltaTime);
-        render();
+        time = clock.getElapsedTime();
+        if (time.asSeconds() >= 0.01667f) { // Max 60Hz
+            handleInput();
+            update();
+            render();
+            clock.restart();
+        }
     }
 }
 
@@ -43,32 +46,32 @@ void Engine::handleInput() {
         }
     }
 
-void Engine::update(float deltaTime) {
-    switch (currentState) {
-    case STATE_MENU:
-        menu.update(deltaTime);
-        break;
-    case STATE_PLAY:
-        game.update(deltaTime);
-        break;
-    case STATE_SCOREBOARD:
-        scoreboard.update(deltaTime);
-        break;
-    }
-}
-
-void Engine::render() {
-        window.clear(gb::colBackground);
+void Engine::update() {
         switch (currentState) {
         case STATE_MENU:
-            menu.render(window);
+            menu.update();
             break;
         case STATE_PLAY:
-            game.render(window);
+            game.update();
             break;
         case STATE_SCOREBOARD:
-            scoreboard.render(window);
+            scoreboard.update();
             break;
-        }
-        window.display();  
+        }  
+    } 
+
+void Engine::render() {
+            window.clear(gb::colBackground);
+            switch (currentState) {
+            case STATE_MENU:
+                menu.render(window);
+                break;
+            case STATE_PLAY:
+                game.render(window);
+                break;
+            case STATE_SCOREBOARD:
+                scoreboard.render(window);
+                break;
+            }
+            window.display();     
 }
