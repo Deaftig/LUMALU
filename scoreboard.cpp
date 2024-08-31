@@ -23,7 +23,7 @@ int Scoreboard::handleInput(sf::Event& event)
     }
 }
 
-void Scoreboard::update()
+void Scoreboard::update(float deltaTime)
 {
 
 }

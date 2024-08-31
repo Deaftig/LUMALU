@@ -3,17 +3,16 @@
 #include "globals.h"
 
 // PUBLIC
-Engine::Engine()
-{
+Engine::Engine() {
    window.create(sf::VideoMode(gb::winWidth, gb::winHeight), "SFML Game", sf::Style::None);
 }
 
 // IPO
 void Engine::run() {
-
     while (window.isOpen()) {
+
         handleInput();
-        update();
+        update(deltaTime);
         render();
     }
 }
@@ -44,16 +43,16 @@ void Engine::handleInput() {
         }
     }
 
-void Engine::update() {
+void Engine::update(float deltaTime) {
     switch (currentState) {
     case STATE_MENU:
-        menu.update();
+        menu.update(deltaTime);
         break;
     case STATE_PLAY:
-        game.update();
+        game.update(deltaTime);
         break;
     case STATE_SCOREBOARD:
-        scoreboard.update();
+        scoreboard.update(deltaTime);
         break;
     }
 }

@@ -33,7 +33,7 @@ int Game::handleInput(sf::Event& event)
     }
 }
 
-void Game::update()
+void Game::update(float deltaTime)
 {
     sf::Vector2i newHeadPosition = snake.front() + direction;
 

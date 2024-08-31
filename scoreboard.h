@@ -11,7 +11,7 @@ class Scoreboard {
 public:
 	Scoreboard();
 	int handleInput(sf::Event& event);
-	void update();
+	void update(float deltaTime);
 	void render(sf::RenderWindow& window);
 
 private:

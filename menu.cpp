@@ -53,7 +53,7 @@ int Menu::handleInput(sf::Event& event)
     }
 }
 
-void Menu::update()
+void Menu::update(float deltaTime)
 {
     updateTextColors();
 }

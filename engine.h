@@ -17,17 +17,19 @@ public:
 
     sf::RenderWindow window;
     sf::Event event;
+    sf::Clock deltaClock;
+
+    float deltaTime;
 
     Engine();
     void run();
+    void handleInput();
+    void update(float deltaTime);
+    void render();
 
 private:
     enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD };
     State currentState = STATE_MENU;
-
-    void handleInput();
-    void update();
-    void render();
 };
 
 #endif
