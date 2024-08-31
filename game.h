@@ -1,43 +1,55 @@
-/* LUMALU
-*/
+// Header Guards
 #ifndef GAME
 #define GAME
 
+// Bibliotheken
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-
+// Klasse Game
 class Game {
 public:
+	// Funktionen
 	Game();
-	int handleInput(sf::Event& event);
+	int input(sf::Event& event);
 	void update();
 	void render(sf::RenderWindow& window);
 
 private:
+	// Instanzen
 	sf::Font font;
 	sf::Text scoreText;
 	sf::CircleShape fruit;
 	sf::Clock moveClock;
 	sf::Time moveInterval;
-
 	std::vector<sf::Vector2i> snake;
 	sf::Vector2i direction;
 
+	// Variablen
 	bool fruitActive = false;
 	bool snakeActive = false;
+	bool gameOver = false;
 
-	void spawnFruit();
-	void spawnSnake();
-
+	// Funktionen
+	void initTextStrings();
+	void initFruit();
+	void initSnake();
+	// EVA
+	// Eingabe
+	int processState(sf::Event& event);
+	// Verarbeitung
 	void updateFruit();
 	void updateSnake();
-
+	// Ausgabe
 	void renderArena(sf::RenderWindow& window);
 	void renderFruit(sf::RenderWindow& window);
 	void renderSnake(sf::RenderWindow& window);
 
+	
+
+
 	void initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
+
 };
 
 #endif

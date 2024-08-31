@@ -7,32 +7,34 @@
 #include "game.h"
 #include "scoreboard.h"
 
-// SFML
+// Bibliotheken
 #include <SFML/Graphics.hpp>
 
-// Engine
+// Klasse Engine
 class Engine {
 public:
+    // Instanzen
     Menu menu;
     Game game;
     Scoreboard scoreboard;
-
-    // SFML
     sf::RenderWindow window;
     sf::Event event;
+    sf::Font font;
+
     sf::Clock clock;
     sf::Time time;
+
+    // Variablen
+    enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD };
+    State currentState = STATE_MENU;
 
     // Funktionen
     Engine();
     void run();             
-    void handleInput();
+    void input();
     void update();
     void render();
-
-private:
-    enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD };
-    State currentState = STATE_MENU;
+    void initWindow();
 };
 
 #endif
