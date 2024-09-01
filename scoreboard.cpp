@@ -10,6 +10,7 @@
 Scoreboard::Scoreboard()
 {
     initTextStrings();
+    std::cout << "Scoreboard initialisert \n"; //DEBUG
 }
 
 //IPO
@@ -53,8 +54,6 @@ int Scoreboard::processState(sf::Event& event) {
     }
 }
 
-
-
 // TEXT
 void Scoreboard::updateTextColors() {
     deleteText.setFillColor(selectedMenuItem == 0 ? gb::colFruit : gb::colTextOff);
@@ -64,9 +63,9 @@ void Scoreboard::updateTextColors() {
 void Scoreboard::initTextStrings()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
-    initCenteredText(titleText, "BESTENLISTE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.1));
-    initCenteredText(deleteText, "LÖSCHEN", 50, gb::colTextOn, sf::Vector2f(gb::winWidth / 1.2, gb::winHeight * 0.9));
-    initCenteredText(returnText, "ZURÜCK", 50, gb::colTextOn, sf::Vector2f(gb::winWidth / 5, gb::winHeight * 0.9));
+    initCenteredText(titleText, "BESTENLISTE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.1));
+    initCenteredText(deleteText, "LÖSCHEN", 50, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.8, gb::winHeight * 0.9));
+    initCenteredText(returnText, "ZURÜCK", 50, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.2, gb::winHeight * 0.9));
 
 }
 
@@ -82,12 +81,5 @@ void Scoreboard::initCenteredText(sf::Text& text, const std::string& string, uns
     text.setPosition(position);
 }
 
-void Scoreboard::initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
-{
-    text.setFont(font);
-    text.setString(string);
-    text.setCharacterSize(size);
-    text.setFillColor(color);
-    text.setPosition(position);
-}
+
 

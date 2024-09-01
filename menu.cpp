@@ -1,14 +1,14 @@
-/* LUMALU
-*/
+
 #include "menu.h"
 #include "globals.h"
-#include <iostream>
 
+#include <iostream>
 // --------------------------------------
 // PUBLIC
 Menu::Menu()
 {
     initTextStrings();
+    std::cout << "Menu initialisert \n"; //DEBUG
 }
 
 // IPO
@@ -35,32 +35,14 @@ void Menu::render(sf::RenderWindow& window)
 // PRIVAT
 int Menu::processState(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::W) {
-            std::cout << "MENU_W \n"; //DEBUG
-            selectedMenuItem = (selectedMenuItem - 1 + 3) % 3;
-        }
-        else if (event.key.code == sf::Keyboard::S) {
-            std::cout << "MENU_S \n"; //DEBUG
-            selectedMenuItem = (selectedMenuItem + 1) % 3;
-        }
+        if (event.key.code == sf::Keyboard::W) { selectedMenuItem = (selectedMenuItem - 1 + 3) % 3; }
+        else if (event.key.code == sf::Keyboard::S) { selectedMenuItem = (selectedMenuItem + 1) % 3; }
         else if (event.key.code == sf::Keyboard::Enter) {
-            std::cout << "MENU_Enter \n"; //DEBUG
-            if (selectedMenuItem == 0) {
-                return 1; // START
-            }
-            else if (selectedMenuItem == 1) {
-                return 2; // BESTENLISTE
-            }
-            else if (selectedMenuItem == 2)
-            {
-                return 0; // BEENDEN
-            }
+            if (selectedMenuItem == 0) { return 1; } // START
+            else if (selectedMenuItem == 1) { return 2; } // BESTENLISTE
+            else if (selectedMenuItem == 2) { return 0; } // BEENDEN
         }
-        if (event.key.code == sf::Keyboard::Escape)
-        {
-            std::cout << "MENU_Esc \n"; //DEBUG
-            return 0;
-        }
+        if (event.key.code == sf::Keyboard::Escape) { return 0; }
     }
 }
 
@@ -75,11 +57,11 @@ void Menu::updateTextColors()
 void Menu::initTextStrings()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
-    initCenteredText(titleText, "SNAKE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.2));
-    initCenteredText(startText, "START", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.4));
-    initCenteredText(highscoreText, "BESTENLISTE", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.5));
-    initCenteredText(quitText, "BEENDEN", 50, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.6));
-    initCenteredText(helpText, "Steuerung mit W,A,S,D, Enter und Escape", 20, gb::colTextOff, sf::Vector2f(gb::winWidth / 2, gb::winHeight * 0.95));
+    initCenteredText(titleText, "SNAKE", 90, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.2));
+    initCenteredText(startText, "START", 50, gb::colTextOff, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.4));
+    initCenteredText(highscoreText, "BESTENLISTE", 50, gb::colTextOff, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.5));
+    initCenteredText(quitText, "BEENDEN", 50, gb::colTextOff, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.6));
+    initCenteredText(helpText, "Steuerung mit W,A,S,D, Enter und Escape", 20, gb::colTextOff, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.95));
 }
 
 void Menu::initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)

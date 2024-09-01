@@ -4,6 +4,7 @@
 
 // Bibliotheken
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 // Klasse Scoreboard
 class Scoreboard {
@@ -33,9 +34,6 @@ private:
 	// Verarbeitung
 	void updateTextColors();
 
-
 	void initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
-	void initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
 };
-
 #endif

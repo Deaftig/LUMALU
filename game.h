@@ -18,17 +18,23 @@ public:
 private:
 	// Instanzen
 	sf::Font font;
-	sf::Text scoreText;
+	sf::Text finalText;
+	sf::Text activeScoreText;
+	sf::Text finalScoreText;
+	sf::Text nameText;
 	sf::CircleShape fruit;
 	sf::Clock moveClock;
 	sf::Time moveInterval;
 	std::vector<sf::Vector2i> snake;
 	sf::Vector2i direction;
 
+	std::string playerName;
+
 	// Variablen
 	bool fruitActive = false;
 	bool snakeActive = false;
 	bool gameOver = false;
+	int playerPoints = 0;
 
 	// Funktionen
 	void initTextStrings();
@@ -36,7 +42,8 @@ private:
 	void initSnake();
 	// EVA
 	// Eingabe
-	int processState(sf::Event& event);
+	int processState_gameOver_false(sf::Event& event);
+	int processState_gameOver_true(sf::Event& event);
 	// Verarbeitung
 	void updateFruit();
 	void updateSnake();
@@ -46,10 +53,8 @@ private:
 	void renderSnake(sf::RenderWindow& window);
 
 	
-
-
-	void initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
-
+	void initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
 };
 
 #endif
+

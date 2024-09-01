@@ -7,57 +7,111 @@
 Game::Game()
 {
     initTextStrings();
-    initFruit();
-    initSnake();
+    std::cout << "Game initialisert \n"; //DEBUG
 }
 
 // IPO
 int Game::input(sf::Event& event) {
-   return processState(event);
+    switch (gameOver) {
+    case false:
+        return processState_gameOver_false(event);
+        break;
+    case true:
+        return processState_gameOver_true(event);
+        break;
+    }
 }
 
 void Game::update()
 {
-    updateFruit();
-    updateSnake();
+    switch (gameOver) {
+    case false:
+        updateFruit();
+        updateSnake();
+        break;
+    case true:
+        break;
+    }
 }
 
 void Game::render(sf::RenderWindow& window)
 {
-    window.clear(gb::colBackground);
-    window.draw(scoreText);
-    renderArena(window);
-    renderFruit(window);
-    renderSnake(window);
+    switch (gameOver) {
+    case false:
+        window.clear(gb::colBackground);
+        window.draw(activeScoreText);
+        renderArena(window);
+        renderSnake(window);
+        renderFruit(window);
+        break;
+    case true:
+        window.clear(gb::colShade);
+        window.draw(finalText);
+        window.draw(finalScoreText);
+        window.draw(nameText);
+        break;
+    }
 }
+
 // --------------------------------------
-// PRIVATE
-int Game::processState(sf::Event& event) {
+// PRIVAT
+int Game::processState_gameOver_false(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Escape) {
-            std::cout << "GAME_Esc \n"; //DEBUG
-            gameOver = true;
-            update();
+            snakeActive = false;
+            fruitActive = false;
             return 3;
         }
-        if (!gameOver) {
-            if (event.key.code == sf::Keyboard::W && direction.y == 0) {
-                std::cout << "GAME_W \n"; //DEBUG
-                direction = sf::Vector2i(0, -1);  // Nach oben
-            }
-            else if (event.key.code == sf::Keyboard::A && direction.x == 0) {
-                std::cout << "GAME_A \n"; //DEBUG
-                direction = sf::Vector2i(-1, 0);  // Nach links
-            }
-            else if (event.key.code == sf::Keyboard::S && direction.y == 0) {
-                std::cout << "GAME_S \n"; //DEBUG
-                direction = sf::Vector2i(0, 1);   // Nach unten
-            }
-            else if (event.key.code == sf::Keyboard::D && direction.x == 0) {
-                std::cout << "GAME_D \n"; //DEBUG
-                direction = sf::Vector2i(1, 0);   // Nach rechts
+        if (event.key.code == sf::Keyboard::X) {
+            gameOver = true; // DEBUG
+            playerName = ""; // DEBUG
+            playerPoints = 0; // DEBUG
+            std::cout << "GAME OVER! \n"; //DEBUG
+        }
+        if (event.key.code == sf::Keyboard::W && direction.y == 0) {
+            direction = sf::Vector2i(0, -1);  // Nach oben
+        }
+        else if (event.key.code == sf::Keyboard::A && direction.x == 0) {
+            direction = sf::Vector2i(-1, 0);  // Nach links
+        }
+        else if (event.key.code == sf::Keyboard::S && direction.y == 0) {
+            direction = sf::Vector2i(0, 1);   // Nach unten
+        }
+        else if (event.key.code == sf::Keyboard::D && direction.x == 0) {
+            direction = sf::Vector2i(1, 0);   // Nach rechts
+        }
+    }
+}
 
+int Game::processState_gameOver_true(sf::Event& event) {
+    if (event.type == sf::Event::KeyPressed) {
+        if (event.key.code == sf::Keyboard::Escape) {
+            snakeActive = false;
+            fruitActive = false;
+            return 3;
+        }
+    }
+    if (event.type == sf::Event::TextEntered) {
+        char enteredChar = static_cast<char>(event.text.unicode);
+
+        // Überprüfen, ob es ein Großbuchstabe (A-Z) ist
+        if (enteredChar >= 'A' && enteredChar <= 'Z') {
+            if (playerName.length() < 6) {  // Beschränkung auf 6 Zeichen
+                playerName += enteredChar;
+                nameText.setString("Name: " + playerName);
             }
+        }
+        // Überprüfen, ob es ein Kleinbuchstabe (a-z) ist und umwandeln in Großbuchstabe
+        else if (enteredChar >= 'a' && enteredChar <= 'z') {
+            if (playerName.length() < 6) {
+                playerName += static_cast<char>(enteredChar - 32);  // Umwandeln in Großbuchstabe
+                nameText.setString("Name: " + playerName);
+            }
+        }
+        // Verarbeiten der Rücktaste (Löschen des letzten Buchstabens)
+        else if (event.text.unicode == 8 && !playerName.empty()) {
+            playerName.pop_back();
+            nameText.setString("Name: " + playerName);
         }
     }
 }
@@ -88,40 +142,40 @@ void Game::initSnake() {
     direction = sf::Vector2i(1, 0);
     snakeActive = true;
 
-    std::cout << "SCchlange erzeugt \n"; //DEBUG
+    std::cout << "Schlange erzeugt \n"; //DEBUG
 }
 
 // UPDATE
 void Game::updateFruit()
 {
-    if (!gameOver) {
-        if (!fruitActive) {
-            initFruit();
-        }
-    }
-}
+     if (!fruitActive) {
+         initFruit();
+     }
+ }
+
 
 void Game::updateSnake()
 {
-    if (!gameOver) {
-        moveInterval = sf::seconds(0.5f);
-        sf::Time elapsed = moveClock.restart();
-        if (elapsed >= moveInterval) {
-            if (!snake.empty()) {
-                // Speichere die aktuelle Kopfposition
-                sf::Vector2i newHeadPosition = snake.front();
-                // Bewege den Kopf in die aktuelle Richtung
-                newHeadPosition += direction;
-
-                // Füge die neue Kopfposition am Anfang der Schlange hinzu
-                snake.insert(snake.begin(), newHeadPosition);
-
-                snake.pop_back();
-            }
-            moveClock.restart();
-        }
+    if (!snakeActive) {
+        initSnake();
     }
+    //moveInterval = sf::seconds(0.5f);
+    //sf::Time elapsed = moveClock.restart();
+    //if (elapsed >= moveInterval) {
+    //    if (!snake.empty()) {
+    //        // Speichere die aktuelle Kopfposition
+    //        sf::Vector2i newHeadPosition = snake.front();
+    //        // Bewege den Kopf in die aktuelle Richtung
+    //        newHeadPosition += direction;
+    //        // Füge die neue Kopfposition am Anfang der Schlange hinzu
+    //        snake.insert(snake.begin(), newHeadPosition);
+
+    //        snake.pop_back();
+    //    }
+    //    moveClock.restart();
+    //}
 }
+
 
 
 
@@ -159,18 +213,28 @@ void Game::renderSnake(sf::RenderWindow& window)
         window.draw(snakeSegment);
     }
 }
+
+
 // TEXT
 void Game::initTextStrings()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");
-    initText(scoreText, "Punkte: ", 70, gb::colTextOn, sf::Vector2f(gb::winWidth / 4, gb::winHeight * 0.025));
+    initCenteredText(activeScoreText, "Punkte: ", 70, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.4, gb::winHeight * 0.1));
+    initCenteredText(finalText, "Spiel beendet!", 70, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.2));
+    initCenteredText(finalScoreText, "Punkte: XX", 70, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.4));
+    initCenteredText(nameText, "Name: XXXXXX", 70, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.6));
+
 }
 
-void Game::initText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
+void Game::initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position)
 {
     text.setFont(font);
     text.setString(string);
     text.setCharacterSize(size);
     text.setFillColor(color);
     text.setPosition(position);
+    sf::FloatRect textBounds = text.getLocalBounds();
+    text.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
+    text.setPosition(position);
 }
+

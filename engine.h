@@ -17,6 +17,7 @@ public:
     Menu menu;
     Game game;
     Scoreboard scoreboard;
+
     sf::RenderWindow window;
     sf::Event event;
     sf::Font font;
@@ -25,7 +26,7 @@ public:
     sf::Time time;
 
     // Variablen
-    enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD };
+    enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD};
     State currentState = STATE_MENU;
 
     // Funktionen

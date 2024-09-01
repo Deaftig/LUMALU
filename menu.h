@@ -33,7 +33,6 @@ private:
 
     void updateTextColors();
 
-
     void initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
 };
 
