@@ -23,8 +23,7 @@ private:
 	sf::Text returnText;
 
 	// Variablen
-	int selectedMenuItem = 0;
-
+	int selectedScoreboardItem = 0;
 
 	// Funktionen
 	void initTextStrings();

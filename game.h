@@ -22,6 +22,8 @@ private:
 	sf::Text activeScoreText;
 	sf::Text finalScoreText;
 	sf::Text nameText;
+	sf::Text againText;
+	sf::Text returnText;
 	sf::CircleShape fruit;
 	sf::Clock moveClock;
 	sf::Time moveInterval;
@@ -34,17 +36,20 @@ private:
 	bool fruitActive = false;
 	bool snakeActive = false;
 	bool gameOver = false;
-	int playerPoints = 0;
+	int playerScore = 0;
+	bool growSnake = false;
 
 	// Funktionen
 	void initTextStrings();
-	void initFruit();
-	void initSnake();
+	void spawnFruit();
+	void spawnSnake();
 	// EVA
 	// Eingabe
-	int processState_gameOver_false(sf::Event& event);
-	int processState_gameOver_true(sf::Event& event);
+	int processState(sf::Event& event);
+	int processState_gameOver(sf::Event& event);
 	// Verarbeitung
+	void resetGame();
+	void updateCollision();
 	void updateFruit();
 	void updateSnake();
 	// Ausgabe

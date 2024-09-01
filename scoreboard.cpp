@@ -34,16 +34,16 @@ void Scoreboard::render(sf::RenderWindow& window)
 int Scoreboard::processState(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::A) {
-            selectedMenuItem = (selectedMenuItem - 1 + 2) % 2;
+            selectedScoreboardItem = (selectedScoreboardItem - 1 + 2) % 2;
         }
         else if (event.key.code == sf::Keyboard::D) {
-            selectedMenuItem = (selectedMenuItem + 1) % 2;
+            selectedScoreboardItem = (selectedScoreboardItem + 1) % 2;
         }
         else if (event.key.code == sf::Keyboard::Enter) {
-            if (selectedMenuItem == 0) {
+            if (selectedScoreboardItem == 1) {
         // DELETE SCORBOARD
             }
-            else if (selectedMenuItem == 1) {
+            else if (selectedScoreboardItem == 0) {
                 return 3; // BESTENLISTE
             }
         }
@@ -56,8 +56,8 @@ int Scoreboard::processState(sf::Event& event) {
 
 // TEXT
 void Scoreboard::updateTextColors() {
-    deleteText.setFillColor(selectedMenuItem == 0 ? gb::colFruit : gb::colTextOff);
-    returnText.setFillColor(selectedMenuItem == 1 ? gb::colTextOn : gb::colTextOff);
+    deleteText.setFillColor(selectedScoreboardItem == 1 ? gb::colFruit : gb::colTextOff);
+    returnText.setFillColor(selectedScoreboardItem == 0 ? gb::colTextOn : gb::colTextOff);
 }
 
 void Scoreboard::initTextStrings()
