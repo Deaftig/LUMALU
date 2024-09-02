@@ -1,9 +1,7 @@
-
+// Header-Dateien
 #include "menu.h"
 #include "globals.h"
 
-#include <iostream>
-// --------------------------------------
 // PUBLIC
 Menu::Menu()
 {

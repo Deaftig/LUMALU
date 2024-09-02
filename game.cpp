@@ -1,7 +1,7 @@
+// Header-Dateien
+#include "scoreboard.h"
 #include "game.h"
 #include "globals.h"
-
-#include <iostream>
 
 // PUBLIC
 Game::Game()
@@ -83,7 +83,7 @@ int Game::processState(sf::Event& event) {
 int Game::processState_gameOver(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Escape || event.key.code == sf::Keyboard::Enter) {
-            //scoreboardEntry();
+            scoreboardEntry();
             resetGame();
             return 3; }
     }
@@ -156,10 +156,12 @@ void Game::spawnSnake() {
     std::cout << "Schlange erzeugt \n"; //DEBUG
 }
 
-//void Game::scoreboardEntry()
-//{
-//    scoreboard.addEntry(playerName,playerScore)
-//}
+void Game::scoreboardEntry() {
+    // Füge den Namen und Score dem Scoreboard hinzu
+    if (!playerName.empty()) {
+        scoreboard.addScore(playerName, playerScore);
+    }
+}
 
 void Game::resetGame()
 {
@@ -213,7 +215,6 @@ void Game::updateCollision()
     }
 }
 
-
 // UPDATE
 void Game::updateFruit()
 {
@@ -229,7 +230,7 @@ void Game::updateSnake()
         spawnSnake();
     }
 
-    moveInterval = sf::seconds(1.f);
+    moveInterval = sf::seconds(0.2f);
     if (moveClock.getElapsedTime() >= moveInterval) {
         if (!snake.empty()) {
             // Speichere die aktuelle Kopfposition

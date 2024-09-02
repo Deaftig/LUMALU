@@ -9,6 +9,7 @@
 
 // Bibliotheken
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 // Klasse Engine
 class Engine {

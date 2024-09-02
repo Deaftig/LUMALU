@@ -2,8 +2,6 @@
 #include "engine.h"
 #include "globals.h"
 
-#include <iostream>
-
 Engine::Engine() {
     initWindow();
     std::cout << "Engine initialisert \n"; //DEBUG

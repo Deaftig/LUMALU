@@ -6,6 +6,23 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
+#include <fstream> 
+
+// strcut
+struct ScoreEntry {
+	std::string playerName;
+	int playerScore;
+
+	ScoreEntry(const std::string& name, int score)
+		: playerName(name), playerScore(score) {}
+
+	// Vergleichsoperator für Sortierung
+	bool operator<(const ScoreEntry& other) const {
+		return playerScore < other.playerScore;
+	}
+};
 
 // Klasse Scoreboard
 class Scoreboard {
@@ -18,7 +35,10 @@ public:
 	void update();
 	void render(sf::RenderWindow& window);
 
-	struct scoreboard { std::string scoreboardName; int scoreboardScore; };
+	// Funktionen für das Eintragen und Laden von Highscores
+	void addScore(const std::string& playerName, int score);
+	void loadScores();
+	void saveScores();
 
 private:
 	// Instanzen
@@ -26,6 +46,7 @@ private:
 	sf::Text titleText;
 	sf::Text deleteText;
 	sf::Text returnText;
+	std::vector<ScoreEntry> scores;
 
 	// Variablen
 	int selectedScoreboardItem = 0;

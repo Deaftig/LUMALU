@@ -1,13 +1,11 @@
-// Headers
+// Header-Dateien
 #include "scoreboard.h"
 #include "globals.h"
-
-#include <iostream>
-
 
 // PUBLIC
 Scoreboard::Scoreboard() {
     initTextStrings();
+    loadScores();
     std::cout << "Scoreboard initialisert \n"; //DEBUG
 }
 
@@ -49,6 +47,34 @@ int Scoreboard::processState(sf::Event& event) {
     }
 }
 
+void Scoreboard::addScore(const std::string& playerName, int score) {
+    scores.push_back(ScoreEntry(playerName, score));
+    std::sort(scores.begin(), scores.end());  // Sortiere nach Scores
+    saveScores();  // Speichere die Scores
+}
+
+void Scoreboard::loadScores() {
+    std::ifstream file("highscores.txt");
+    std::string name;
+    int score;
+    if (file.is_open()) {
+        while (file >> name >> score) {
+            scores.push_back(ScoreEntry(name, score));
+        }
+        file.close();
+    }
+}
+
+void Scoreboard::saveScores() {
+    std::ofstream file("highscores.txt");
+    if (file.is_open()) {
+        for (const auto& entry : scores) {
+            file << entry.playerName << " " << entry.playerScore << "\n";
+        }
+        file.close();
+    }
+}
+
 // TEXT
 void Scoreboard::updateTextColors() {
     deleteText.setFillColor(selectedScoreboardItem == 1 ? gb::colFruit : gb::colTextOff);
@@ -60,6 +86,14 @@ void Scoreboard::renderText(sf::RenderWindow& window)
     window.draw(titleText);
     window.draw(deleteText);
     window.draw(returnText);
+    // Render die Highscores
+    float yOffset = gb::winHeight * 0.2;
+    for (const auto& entry : scores) {
+        sf::Text scoreText;
+        initCenteredText(scoreText, entry.playerName + ": " + std::to_string(entry.playerScore), 30, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, yOffset));
+        window.draw(scoreText);
+        yOffset += 40; // Abstand zwischen den Einträgen
+    }
 }
 
 

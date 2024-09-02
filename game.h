@@ -5,6 +5,7 @@
 // Bibliotheken
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <iostream>
 
 // Klasse Game
 class Game {
@@ -58,7 +59,7 @@ private:
 	void initTextStrings();
 	void spawnFruit();
 	void spawnSnake();
-	//void scoreboardEntry();
+	void scoreboardEntry();
 	void initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
 };
 #endif
