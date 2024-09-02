@@ -1,5 +1,4 @@
-/* LUMALU
-*/
+// Header Guards
 #ifndef GLOBALS
 #define GLOBALS
 

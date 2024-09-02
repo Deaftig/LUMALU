@@ -82,8 +82,10 @@ int Game::processState(sf::Event& event) {
 
 int Game::processState_gameOver(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Escape) { snakeActive = false;fruitActive = false;return 3; }
-        if (event.key.code == sf::Keyboard::Enter) {resetGame(); return 3; }
+        if (event.key.code == sf::Keyboard::Escape || event.key.code == sf::Keyboard::Enter) {
+            //scoreboardEntry();
+            resetGame();
+            return 3; }
     }
     if (event.type == sf::Event::TextEntered) {
         char enteredChar = static_cast<char>(event.text.unicode);
@@ -140,7 +142,6 @@ void Game::spawnFruit() {
     std::cout << "Frucht erzeugt bei X: " << fruit.getPosition().x << ", Y: " << fruit.getPosition().y << std::endl; // DEBUG
 }
 
-
 void Game::spawnSnake() {
     int initialLength = 5;
     int startX = gb::arenaWidth / 2;
@@ -155,6 +156,11 @@ void Game::spawnSnake() {
     std::cout << "Schlange erzeugt \n"; //DEBUG
 }
 
+//void Game::scoreboardEntry()
+//{
+//    scoreboard.addEntry(playerName,playerScore)
+//}
+
 void Game::resetGame()
 {
     initTextStrings();
@@ -164,9 +170,8 @@ void Game::resetGame()
     playerName = "";
     playerScore = 0;
     snake.clear();
-    growSnake = false; // Sicherstellen, dass die Schlange beim Neustart nicht wächst
+    growSnake = false; 
 }
-
 
 void Game::updateCollision()
 {
@@ -306,4 +311,3 @@ void Game::initCenteredText(sf::Text& text, const std::string& string, unsigned 
     text.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
     text.setPosition(position);
 }
-

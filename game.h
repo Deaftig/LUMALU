@@ -9,8 +9,10 @@
 // Klasse Game
 class Game {
 public:
-	// Funktionen
+	// Constructor
 	Game();
+
+	// EVA
 	int input(sf::Event& event);
 	void update();
 	void render(sf::RenderWindow& window);
@@ -29,7 +31,6 @@ private:
 	sf::Time moveInterval;
 	std::vector<sf::Vector2i> snake;
 	sf::Vector2i direction;
-
 	std::string playerName;
 
 	// Variablen
@@ -39,10 +40,6 @@ private:
 	int playerScore = 0;
 	bool growSnake = false;
 
-	// Funktionen
-	void initTextStrings();
-	void spawnFruit();
-	void spawnSnake();
 	// EVA
 	// Eingabe
 	int processState(sf::Event& event);
@@ -57,9 +54,11 @@ private:
 	void renderFruit(sf::RenderWindow& window);
 	void renderSnake(sf::RenderWindow& window);
 
-	
+	// Funktionen
+	void initTextStrings();
+	void spawnFruit();
+	void spawnSnake();
+	//void scoreboardEntry();
 	void initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
 };
-
 #endif
-

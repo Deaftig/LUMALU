@@ -17,11 +17,9 @@ public:
     Menu menu;
     Game game;
     Scoreboard scoreboard;
-
     sf::RenderWindow window;
     sf::Event event;
     sf::Font font;
-
     sf::Clock clock;
     sf::Time time;
 
@@ -29,13 +27,18 @@ public:
     enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD};
     State currentState = STATE_MENU;
 
-    // Funktionen
+    // Constructor
     Engine();
-    void run();             
+
+    // Hauptschleife
+    void run();   
+
+    // EVA
     void input();
     void update();
     void render();
+
+    // Funktionen
     void initWindow();
 };
-
 #endif

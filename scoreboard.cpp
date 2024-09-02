@@ -1,5 +1,4 @@
-/* LUMALU
-*/
+// Headers
 #include "scoreboard.h"
 #include "globals.h"
 
@@ -7,28 +6,24 @@
 
 
 // PUBLIC
-Scoreboard::Scoreboard()
-{
+Scoreboard::Scoreboard() {
     initTextStrings();
     std::cout << "Scoreboard initialisert \n"; //DEBUG
 }
 
-//IPO
+// EVA
 int Scoreboard::input(sf::Event& event) {
     return processState(event);
 }
 
-void Scoreboard::update()
-{
+void Scoreboard::update() {
     updateTextColors();
 }
 
-void Scoreboard::render(sf::RenderWindow& window)
-{
+void Scoreboard::render(sf::RenderWindow& window) {
     window.clear(gb::colBackground);
-    window.draw(titleText);
-    window.draw(deleteText);
-    window.draw(returnText);
+    renderText(window);
+
 }
 
 int Scoreboard::processState(sf::Event& event) {
@@ -59,6 +54,15 @@ void Scoreboard::updateTextColors() {
     deleteText.setFillColor(selectedScoreboardItem == 1 ? gb::colFruit : gb::colTextOff);
     returnText.setFillColor(selectedScoreboardItem == 0 ? gb::colTextOn : gb::colTextOff);
 }
+
+void Scoreboard::renderText(sf::RenderWindow& window)
+{
+    window.draw(titleText);
+    window.draw(deleteText);
+    window.draw(returnText);
+}
+
+
 
 void Scoreboard::initTextStrings()
 {
