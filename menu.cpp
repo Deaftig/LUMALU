@@ -52,15 +52,6 @@ void Menu::updateTextColors()
     quitText.setFillColor(selectedMenuItem == 2 ? gb::colTextOn : gb::colTextOff);
 }
 
-void Menu::renderText(sf::RenderWindow& window)
-{
-    window.draw(titleText);
-    window.draw(startText);
-    window.draw(highscoreText);
-    window.draw(quitText);
-    window.draw(helpText);
-}
-
 void Menu::initTextStrings()
 {
     font.loadFromFile("Fonts/Dimbo Regular.ttf");

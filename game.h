@@ -12,6 +12,7 @@ class Game {
 public:
 	// Constructor
 	Game();
+	void setScoreboard(Scoreboard& inScoreboard);
 
 	// EVA
 	int input(sf::Event& event);
@@ -20,6 +21,7 @@ public:
 
 private:
 	// Instanzen
+	Scoreboard* scoreboard = nullptr;
 	sf::Font font;
 	sf::Text finalText;
 	sf::Text activeScoreText;

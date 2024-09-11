@@ -10,6 +10,11 @@ Game::Game()
     std::cout << "Game initialisert \n"; //DEBUG
 }
 
+void Game::setScoreboard(Scoreboard& inScoreboard)
+{
+    scoreboard = &inScoreboard;
+}
+
 // IPO
 int Game::input(sf::Event& event) {
     switch (gameOver) {
@@ -157,7 +162,7 @@ void Game::spawnSnake() {
 }
 
 void Game::scoreboardEntry() {
-    // Füge den Namen und Score dem Scoreboard hinzu
+    //Füge den Namen und Score dem Scoreboard hinzu
     if (!playerName.empty()) {
         scoreboard.addScore(playerName, playerScore);
     }

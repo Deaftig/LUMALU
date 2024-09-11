@@ -4,6 +4,7 @@
 
 Engine::Engine() {
     initWindow();
+    game.setScoreboard(scoreboard);
     std::cout << "Engine initialisert \n"; //DEBUG
 }
 

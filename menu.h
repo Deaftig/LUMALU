@@ -35,7 +35,6 @@ private:
     // Verarbeitung
     void updateTextColors();
     // Ausgabe
-    void renderText(sf::RenderWindow& window);
 
     // Funktionen
     void initTextStrings();
