@@ -1,7 +1,8 @@
 // Header-Dateien
 #include "scoreboard.h"
 #include "game.h"
-#include "globals.h"
+#include "global_variables.h"
+#include "global_functions.h"
 
 // PUBLIC
 Game::Game()
@@ -63,23 +64,20 @@ void Game::render(sf::RenderWindow& window)
 // PRIVAT
 int Game::processState(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Escape) {
+        if (gb::pressedEscape) {
             resetGame();
             return 3;
         }
-        if (event.key.code == sf::Keyboard::X) {
-            gameOver = true; // DEBUG
-        }
-        if (event.key.code == sf::Keyboard::W && direction.y == 0) {
+        if (gb::pressedW && direction.y == 0) {
             direction = sf::Vector2i(0, -1);  // Nach oben
         }
-        else if (event.key.code == sf::Keyboard::A && direction.x == 0) {
+        else if (gb::pressedA && direction.x == 0) {
             direction = sf::Vector2i(-1, 0);  // Nach links
         }
-        else if (event.key.code == sf::Keyboard::S && direction.y == 0) {
+        else if (gb::pressedS && direction.y == 0) {
             direction = sf::Vector2i(0, 1);   // Nach unten
         }
-        else if (event.key.code == sf::Keyboard::D && direction.x == 0) {
+        else if (gb::pressedD && direction.x == 0) {
             direction = sf::Vector2i(1, 0);   // Nach rechts
         }
     }
@@ -87,7 +85,7 @@ int Game::processState(sf::Event& event) {
 
 int Game::processState_gameOver(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Escape || event.key.code == sf::Keyboard::Enter) {
+        if (gb::pressedEscape || gb::pressedEnter) {
             scoreboardEntry();
             resetGame();
             return 3; }
@@ -141,9 +139,8 @@ void Game::spawnFruit() {
     // Setze die Fruchtposition
     fruit.setRadius(gb::blockSize / 2);
     fruit.setFillColor(gb::colFruit);
-    fruit.setPosition(fruitPosition.x * gb::blockSize + gb::xOffset,
-        fruitPosition.y * gb::blockSize + gb::yOffset);
-
+    const sf::Vector2f screenPosition = getScreenPosition(fruitPosition.x, fruitPosition.y);
+    fruit.setPosition(screenPosition);
     std::cout << "Frucht erzeugt bei X: " << fruit.getPosition().x << ", Y: " << fruit.getPosition().y << std::endl; // DEBUG
 }
 
@@ -264,10 +261,8 @@ void Game::renderArena(sf::RenderWindow& window)
     for (int i = 0; i < gb::arenaHeight; ++i) {
         for (int j = 0; j < gb::arenaWidth; ++j) {
             sf::RectangleShape block(sf::Vector2f(gb::blockSize, gb::blockSize));
-            block.setPosition(j * gb::blockSize + gb::xOffset,
-                              i * gb::blockSize + gb::yOffset);
-            
-
+            const sf::Vector2f screenPosition = getScreenPosition(j, i);
+            block.setPosition(screenPosition);
             if ((i + j) % 2 == 0)
                 block.setFillColor(gb::colArena1);
             else
@@ -287,11 +282,18 @@ void Game::renderSnake(sf::RenderWindow& window)
 {
     for (const auto& segment : snake) {
         sf::RectangleShape snakeSegment(sf::Vector2f(gb::blockSize, gb::blockSize));
-        snakeSegment.setPosition(segment.x * gb::blockSize + gb::xOffset,
-                                 segment.y * gb::blockSize + gb::yOffset);
+        const sf::Vector2f screenPosition = getScreenPosition(segment.x, segment.y);
+        snakeSegment.setPosition(screenPosition);
         snakeSegment.setFillColor(gb::colSnake);
         window.draw(snakeSegment);
     }
+}
+
+sf::Vector2f Game::getScreenPosition(float x, float y)
+{
+    x = x * gb::blockSize + gb::xOffset;
+    y = y * gb::blockSize + gb::yOffset;
+    return sf::Vector2f(x, y);
 }
 
 // TEXT
@@ -317,3 +319,4 @@ void Game::initCenteredText(sf::Text& text, const std::string& string, unsigned 
     text.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
     text.setPosition(position);
 }
+

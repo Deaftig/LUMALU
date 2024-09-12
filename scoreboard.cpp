@@ -1,6 +1,7 @@
 // Header-Dateien
 #include "scoreboard.h"
-#include "globals.h"
+#include "global_variables.h"
+#include "global_functions.h"
 
 // PUBLIC
 Scoreboard::Scoreboard() {
@@ -26,13 +27,7 @@ void Scoreboard::render(sf::RenderWindow& window) {
 
 int Scoreboard::processState(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::A) {
-            selectedScoreboardItem = (selectedScoreboardItem - 1 + 2) % 2;
-        }
-        else if (event.key.code == sf::Keyboard::D) {
-            selectedScoreboardItem = (selectedScoreboardItem + 1) % 2;
-        }
-        else if (event.key.code == sf::Keyboard::Enter) {
+        if (gb::pressedEnter(event)) {
             if (selectedScoreboardItem == 1) {
                 clearScores();
             }
@@ -40,12 +35,18 @@ int Scoreboard::processState(sf::Event& event) {
                 return 3; // BESTENLISTE
             }
         }
-        if (event.key.code == sf::Keyboard::Escape)
-        {
+        else if (gb::pressedEscape(event)) {
             return 3;
+        }
+        else if (gb::pressedA(event)) {
+            selectedScoreboardItem = (selectedScoreboardItem - 1 + 2) % 2;
+        }
+        else if (gb::pressedD(event)) {
+            selectedScoreboardItem = (selectedScoreboardItem + 1) % 2;
         }
     }
 }
+
 
 void Scoreboard::addScore(const std::string& playerName, int score) {
     scores.push_back(ScoreEntry(playerName, score));
@@ -99,7 +100,7 @@ void Scoreboard::renderText(sf::RenderWindow& window)
     for (const auto& entry : scores) {
         if (count >= 10) break;  // Stoppe nach den Top 10
         sf::Text scoreText;
-        initCenteredText(scoreText, entry.playerName + ": " + std::to_string(entry.playerScore), 30, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, yOffset));
+        initCenteredText(scoreText, entry.playerName + ":  " + std::to_string(entry.playerScore), 30, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, yOffset));
         window.draw(scoreText);
         yOffset += 40; // Abstand zwischen den Einträgen
         count++;  // Zähle die gerenderten Einträge

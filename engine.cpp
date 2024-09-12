@@ -1,6 +1,6 @@
 // Header-Dateien
 #include "engine.h"
-#include "globals.h"
+#include "global_variables.h"
 
 Engine::Engine() {
     initWindow();
@@ -73,5 +73,5 @@ void Engine::render() {
 }
 
 void Engine::initWindow() {
-    window.create(sf::VideoMode(gb::winWidth, gb::winHeight), "SFML Game", sf::Style::None);
+    window.create(sf::VideoMode(gb::winWidth, gb::winHeight), "SNAKE von LUMALU", sf::Style::None);
 }

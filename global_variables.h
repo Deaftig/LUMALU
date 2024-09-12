@@ -1,6 +1,6 @@
 // Header Guards
-#ifndef GLOBALS
-#define GLOBALS
+#ifndef GLOBAL_VAR
+#define GLOBAL_VAR
 
 // SFML-Bibliotheken
 #include <SFML/Graphics.hpp>

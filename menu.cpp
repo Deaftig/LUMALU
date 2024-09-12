@@ -1,6 +1,7 @@
 // Header-Dateien
 #include "menu.h"
-#include "globals.h"
+#include "global_variables.h"
+#include "global_functions.h"
 
 // PUBLIC
 Menu::Menu()
@@ -33,14 +34,14 @@ void Menu::render(sf::RenderWindow& window)
 // PRIVAT
 int Menu::processState(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::W) { selectedMenuItem = (selectedMenuItem - 1 + 3) % 3; }
-        else if (event.key.code == sf::Keyboard::S) { selectedMenuItem = (selectedMenuItem + 1) % 3; }
-        else if (event.key.code == sf::Keyboard::Enter) {
+        if (gb::pressedW) { selectedMenuItem = (selectedMenuItem - 1 + 3) % 3; }
+        else if (gb::pressedS) { selectedMenuItem = (selectedMenuItem + 1) % 3; }
+        else if (gb::pressedEnter) {
             if (selectedMenuItem == 0) { return 1; } // START
             else if (selectedMenuItem == 1) { return 2; } // BESTENLISTE
             else if (selectedMenuItem == 2) { return 0; } // BEENDEN
         }
-        if (event.key.code == sf::Keyboard::Escape) { return 0; }
+        else if (event.key.code == sf::Keyboard::Escape) { return 0; }
     }
 }
 

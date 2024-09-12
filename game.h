@@ -61,10 +61,13 @@ private:
 	void renderSnake(sf::RenderWindow& window);
 
 	// Funktionen
-	void initTextStrings();
+
 	void spawnFruit();
 	void spawnSnake();
 	void scoreboardEntry();
+	sf::Vector2f getScreenPosition(float x, float y);
+	void initTextStrings();
 	void initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
+
 };
 #endif

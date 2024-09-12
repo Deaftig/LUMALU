@@ -41,10 +41,13 @@
     <ClInclude Include="menu.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="globals.h">
+    <ClInclude Include="global_variables.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="game.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="global_functions.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

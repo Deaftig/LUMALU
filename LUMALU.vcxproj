@@ -142,7 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine.h" />
-    <ClInclude Include="globals.h" />
+    <ClInclude Include="global_variables.h" />
+    <ClInclude Include="global_functions.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="scoreboard.h" />
