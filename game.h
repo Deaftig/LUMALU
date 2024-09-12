@@ -2,6 +2,9 @@
 #ifndef GAME
 #define GAME
 
+// Header-Dateien
+#include "scoreboard.h"
+
 // Bibliotheken
 #include <SFML/Graphics.hpp>
 #include <vector>

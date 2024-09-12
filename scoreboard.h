@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <fstream> 
 
-// strcut
+// struct
 struct ScoreEntry {
 	std::string playerName;
 	int playerScore;
@@ -39,6 +39,7 @@ public:
 	void addScore(const std::string& playerName, int score);
 	void loadScores();
 	void saveScores();
+	void clearScores();
 
 private:
 	// Instanzen

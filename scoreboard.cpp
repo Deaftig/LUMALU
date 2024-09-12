@@ -34,7 +34,7 @@ int Scoreboard::processState(sf::Event& event) {
         }
         else if (event.key.code == sf::Keyboard::Enter) {
             if (selectedScoreboardItem == 1) {
-        // DELETE SCORBOARD
+                clearScores();
             }
             else if (selectedScoreboardItem == 0) {
                 return 3; // BESTENLISTE
@@ -73,6 +73,13 @@ void Scoreboard::saveScores() {
         }
         file.close();
     }
+}
+
+void Scoreboard::clearScores()
+{
+    scores.clear(); // Löscht alle Einträge im Scoreboard
+    std::ofstream file("highscores.txt", std::ofstream::trunc); // Leert die Datei
+    file.close();
 }
 
 // TEXT

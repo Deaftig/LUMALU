@@ -164,7 +164,7 @@ void Game::spawnSnake() {
 void Game::scoreboardEntry() {
     //Füge den Namen und Score dem Scoreboard hinzu
     if (!playerName.empty()) {
-        scoreboard.addScore(playerName, playerScore);
+        scoreboard->addScore(playerName, playerScore);
     }
 }
 
