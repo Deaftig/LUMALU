@@ -20,7 +20,7 @@ struct ScoreEntry {
 
 	// Vergleichsoperator für Sortierung
 	bool operator<(const ScoreEntry& other) const {
-		return playerScore < other.playerScore;
+		return playerScore > other.playerScore;
 	}
 };
 

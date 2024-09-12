@@ -93,13 +93,16 @@ void Scoreboard::renderText(sf::RenderWindow& window)
     window.draw(titleText);
     window.draw(deleteText);
     window.draw(returnText);
-    // Render die Highscores
+    // Render die Highscores (nur die Top 10)
     float yOffset = gb::winHeight * 0.2;
+    int count = 0;
     for (const auto& entry : scores) {
+        if (count >= 10) break;  // Stoppe nach den Top 10
         sf::Text scoreText;
         initCenteredText(scoreText, entry.playerName + ": " + std::to_string(entry.playerScore), 30, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, yOffset));
         window.draw(scoreText);
         yOffset += 40; // Abstand zwischen den Einträgen
+        count++;  // Zähle die gerenderten Einträge
     }
 }
 
