@@ -5,30 +5,34 @@
 // SFML-Bibliotheken
 #include <SFML/Graphics.hpp>
 
-namespace gb {
-
+namespace gb
+{
 	// Input
-	bool pressedEnter(sf::Event& event) {
+	inline bool pressedAnyKey(sf::Event& event) {
+		return event.type == sf::Event::KeyPressed;
+	}
+
+	inline bool pressedEnter(sf::Event& event) {
 		return event.key.code == sf::Keyboard::Enter;
 	}
 
-	bool pressedEscape(sf::Event& event) {
+	inline bool pressedEscape(sf::Event& event) {
 		return event.key.code == sf::Keyboard::Escape;
 	}
 
-	bool pressedW(sf::Event& event) {
+	inline bool pressedW(sf::Event& event) {
 		return event.key.code == sf::Keyboard::W;
 	}
 
-	bool pressedA(sf::Event& event) {
+	inline bool pressedA(sf::Event& event) {
 		return event.key.code == sf::Keyboard::A;
 	}
 
-	bool pressedS(sf::Event& event) {
+	inline bool pressedS(sf::Event& event) {
 		return event.key.code == sf::Keyboard::S;
 	}
 
-	bool pressedD(sf::Event& event) {
+	inline bool pressedD(sf::Event& event) {
 		return event.key.code == sf::Keyboard::D;
 	}
 }

@@ -33,15 +33,15 @@ void Menu::render(sf::RenderWindow& window)
 // --------------------------------------
 // PRIVAT
 int Menu::processState(sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
-        if (gb::pressedW) { selectedMenuItem = (selectedMenuItem - 1 + 3) % 3; }
-        else if (gb::pressedS) { selectedMenuItem = (selectedMenuItem + 1) % 3; }
-        else if (gb::pressedEnter) {
+    if (gb::pressedAnyKey(event)) {
+        if (gb::pressedW(event)) { selectedMenuItem = (selectedMenuItem - 1 + 3) % 3; }
+        else if (gb::pressedS(event)) { selectedMenuItem = (selectedMenuItem + 1) % 3; }
+        else if (gb::pressedEnter(event)) {
             if (selectedMenuItem == 0) { return 1; } // START
             else if (selectedMenuItem == 1) { return 2; } // BESTENLISTE
             else if (selectedMenuItem == 2) { return 0; } // BEENDEN
         }
-        else if (event.key.code == sf::Keyboard::Escape) { return 0; }
+        else if (gb::pressedEscape(event)) { return 0; }
     }
 }
 

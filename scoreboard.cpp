@@ -26,7 +26,7 @@ void Scoreboard::render(sf::RenderWindow& window) {
 }
 
 int Scoreboard::processState(sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
+    if (gb::pressedAnyKey(event)) {
         if (gb::pressedEnter(event)) {
             if (selectedScoreboardItem == 1) {
                 clearScores();
@@ -46,7 +46,6 @@ int Scoreboard::processState(sf::Event& event) {
         }
     }
 }
-
 
 void Scoreboard::addScore(const std::string& playerName, int score) {
     scores.push_back(ScoreEntry(playerName, score));

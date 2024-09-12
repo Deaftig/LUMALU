@@ -63,29 +63,29 @@ void Game::render(sf::RenderWindow& window)
 // --------------------------------------
 // PRIVAT
 int Game::processState(sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
-        if (gb::pressedEscape) {
+    if (gb::pressedAnyKey(event)) {
+        if (gb::pressedEscape(event)) {
             resetGame();
             return 3;
         }
-        if (gb::pressedW && direction.y == 0) {
+        else if (gb::pressedW(event) && direction.y == 0) {
             direction = sf::Vector2i(0, -1);  // Nach oben
         }
-        else if (gb::pressedA && direction.x == 0) {
+        else if (gb::pressedA(event) && direction.x == 0) {
             direction = sf::Vector2i(-1, 0);  // Nach links
         }
-        else if (gb::pressedS && direction.y == 0) {
+        else if (gb::pressedS(event) && direction.y == 0) {
             direction = sf::Vector2i(0, 1);   // Nach unten
         }
-        else if (gb::pressedD && direction.x == 0) {
+        else if (gb::pressedD(event) && direction.x == 0) {
             direction = sf::Vector2i(1, 0);   // Nach rechts
         }
     }
 }
 
 int Game::processState_gameOver(sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
-        if (gb::pressedEscape || gb::pressedEnter) {
+    if (gb::pressedAnyKey(event)) {
+        if (gb::pressedEscape(event) || gb::pressedEnter(event)) {
             scoreboardEntry();
             resetGame();
             return 3; }
