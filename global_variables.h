@@ -11,11 +11,11 @@ namespace gb
 	const sf::Color colFruit(202, 83, 51);
 	const sf::Color colTextOff(200, 200, 200);
 	const sf::Color colTextOn(255, 255, 255);
-	const sf::Color colSnake(94, 115, 223, 255);
-	const sf::Color colBackground(51, 70, 118, 255);
-	const sf::Color colSecondary(66, 91, 157, 255);
-	const sf::Color colArena1(188, 206, 244, 255);
-	const sf::Color colArena2(173, 195, 239, 255);
+	const sf::Color colSnake(94, 115, 223);
+	const sf::Color colBackground(51, 70, 118);
+	const sf::Color colSecondary(66, 91, 157);
+	const sf::Color colArena1(188, 206, 244);
+	const sf::Color colArena2(173, 195, 239);
 
 	// Fenstergröße
 	const int winWidth = 600;

@@ -81,6 +81,7 @@ int Game::processState(sf::Event& event) {
             direction = sf::Vector2i(1, 0);   // Nach rechts
         }
     }
+    return -1;
 }
 
 int Game::processState_gameOver(sf::Event& event) {
@@ -110,6 +111,7 @@ int Game::processState_gameOver(sf::Event& event) {
         // Verarbeiten der Rücktaste (Löschen des letzten Buchstabens)
         else if (event.text.unicode == 8 && !playerName.empty()) { playerName.pop_back(); nameText.setString("NAME: " + playerName); }
     }
+    return -1;
 }
 
 // SPAWN
@@ -280,12 +282,14 @@ void Game::renderFruit(sf::RenderWindow& window)
 
 void Game::renderSnake(sf::RenderWindow& window)
 {
+    int segmentCounter = 0;
     for (const auto& segment : snake) {
         sf::RectangleShape snakeSegment(sf::Vector2f(gb::blockSize, gb::blockSize));
         const sf::Vector2f screenPosition = getScreenPosition(segment.x, segment.y);
         snakeSegment.setPosition(screenPosition);
         snakeSegment.setFillColor(gb::colSnake);
         window.draw(snakeSegment);
+        segmentCounter++;
     }
 }
 
@@ -303,7 +307,7 @@ void Game::initTextStrings()
     initCenteredText(activeScoreText, "PUNKTE: 0", 70, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.4, gb::winHeight * 0.1));
     initCenteredText(finalText, "SPIEL BEENDET!", 90, gb::colTextOn, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.2));
     initCenteredText(finalScoreText, "PUNKTE: XX", 70, gb::colTextOff, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.4));
-    initCenteredText(nameText, "NAME: PLAYER", 70, gb::colTextOff, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.6));
+    initCenteredText(nameText, "NAME:               ", 70, gb::colTextOff, sf::Vector2f(gb::winWidth * 0.5, gb::winHeight * 0.6));
     initCenteredText(againText, "NEUSTART", 50, gb::colTextOff, sf::Vector2f(gb::winWidth * 0.8, gb::winHeight * 0.9));
     initCenteredText(returnText, "ZURÜCK", 50, gb::colTextOff, sf::Vector2f(gb::winWidth * 0.2, gb::winHeight * 0.9));
 }

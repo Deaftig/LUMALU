@@ -45,6 +45,7 @@ int Scoreboard::processState(sf::Event& event) {
             selectedScoreboardItem = (selectedScoreboardItem + 1) % 2;
         }
     }
+    return -1;
 }
 
 void Scoreboard::addScore(const std::string& playerName, int score) {

@@ -43,6 +43,7 @@ int Menu::processState(sf::Event& event) {
         }
         else if (gb::pressedEscape(event)) { return 0; }
     }
+    return -1;
 }
 
 // TEXT
