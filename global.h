@@ -38,7 +38,7 @@ namespace gb {
 
     // Überprüft, ob die Enter-Taste gedrückt wurde
     inline bool pressedEnter(sf::Event& event) {
-        return event.key.code == sf::Keyboard::Enter;
+        return event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter;
     }
 
     // Überprüft, ob die Escape-Taste gedrückt wurde

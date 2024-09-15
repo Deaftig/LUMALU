@@ -30,7 +30,7 @@ public:
     enum State {
         STATE_MENU,          // Menü
         STATE_PLAY,          // Spiel
-        STATE_SCOREBOARD     // Bestenliste
+        STATE_SCOREBOARD,    // Bestenliste
     };
     State currentState = STATE_MENU; // Aktueller Zustand, initialisiert mit dem Menü
 

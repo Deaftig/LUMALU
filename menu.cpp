@@ -19,13 +19,13 @@ int Menu::input(sf::Event& event) {
             selectedMenuItem = (selectedMenuItem + 1) % 3; // Auswahl nach unten bewegen
         }
         else if (gb::pressedEnter(event)) { // Überprüft, ob die Enter-Taste gedrückt wurde
-            if (selectedMenuItem == 0) { return 1; } // START: Gibt 1 zurück, um das Spiel zu starten
-            else if (selectedMenuItem == 1) { return 2; } // BESTENLISTE: Gibt 2 zurück, um die Bestenliste anzuzeigen
-            else if (selectedMenuItem == 2) { return 0; } // BEENDEN: Gibt 0 zurück, um das Spiel zu beenden
+            if (selectedMenuItem == 0) { return 0; } // BEENDEN: Gibt 0 zurück, um das Spiel zu beenden
+            else if (selectedMenuItem == 1) { return 1; } // START: Gibt 1 zurück, um das Spiel zu starten
+            else if (selectedMenuItem == 2) { return 2; } // BESTENLISTE: Gibt 2 zurück, um die Bestenliste anzuzeigen
         }
         else if (gb::pressedEscape(event)) { return 0; } // Escape-Taste: Gibt 0 zurück, um das Spiel zu beenden
     }
-    return -1; // Keine gültige Eingabe: Gibt -1 zurück
+    return -1;
 }
 
 // Aktualisiert den Zustand des Menüs (z.B. Textfarben)
@@ -48,9 +48,9 @@ void Menu::render(sf::RenderWindow& window) {
 // TEXT
 // Aktualisiert die Farben der Menütexte basierend auf dem ausgewählten Menüpunkt
 void Menu::updateTextColors() {
-    startText.setFillColor(selectedMenuItem == 0 ? gb::colTextOn : gb::colTextOff); // Start-Text hervorheben, wenn ausgewählt
-    highscoreText.setFillColor(selectedMenuItem == 1 ? gb::colTextOn : gb::colTextOff); // Highscore-Text hervorheben, wenn ausgewählt
-    quitText.setFillColor(selectedMenuItem == 2 ? gb::colTextOn : gb::colTextOff); // Beenden-Text hervorheben, wenn ausgewählt
+    quitText.setFillColor(selectedMenuItem == 0 ? gb::colTextOn : gb::colTextOff); // Beenden-Text hervorheben, wenn ausgewählt
+    startText.setFillColor(selectedMenuItem == 1 ? gb::colTextOn : gb::colTextOff); // Start-Text hervorheben, wenn ausgewählt
+    highscoreText.setFillColor(selectedMenuItem == 2 ? gb::colTextOn : gb::colTextOff); // Highscore-Text hervorheben, wenn ausgewählt
 }
 
 // Initialisiert die Textstrings für das Menü

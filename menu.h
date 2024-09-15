@@ -26,7 +26,7 @@ private:
     sf::Text helpText;              // Text für die Hilfestellung
 
     // Variablen: Zum Verwalten des aktuellen Menüauswahlpunkts
-    int selectedMenuItem = 0;       // Index des aktuell ausgewählten Menüpunktes
+    int selectedMenuItem = 1;       // Index des aktuell ausgewählten Menüpunktes
 
     // Funktionen: Hilfsfunktionen zur Initialisierung und Aktualisierung der Menütexte
     void updateTextColors();         // Aktualisiert die Farben der Menütexte basierend auf der Auswahl
