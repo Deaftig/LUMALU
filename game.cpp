@@ -1,14 +1,12 @@
 // Header-Dateien
 #include "scoreboard.h"
 #include "game.h"
-#include "global_variables.h"
-#include "global_functions.h"
+#include "global.h"
 
 // PUBLIC
 Game::Game()
 {
     initTextStrings();
-    std::cout << "Game initialisert \n"; //DEBUG
 }
 
 void Game::setScoreboard(Scoreboard& inScoreboard)
@@ -137,13 +135,11 @@ void Game::spawnFruit() {
             }
         }
     }
-
     // Setze die Fruchtposition
     fruit.setRadius(gb::blockSize / 2);
     fruit.setFillColor(gb::colFruit);
     const sf::Vector2f screenPosition = getScreenPosition(fruitPosition.x, fruitPosition.y);
     fruit.setPosition(screenPosition);
-    std::cout << "Frucht erzeugt bei X: " << fruit.getPosition().x << ", Y: " << fruit.getPosition().y << std::endl; // DEBUG
 }
 
 void Game::spawnSnake() {
@@ -156,8 +152,6 @@ void Game::spawnSnake() {
     }
     direction = sf::Vector2i(1, 0);
     snakeActive = true;
-
-    std::cout << "Schlange erzeugt \n"; //DEBUG
 }
 
 void Game::scoreboardEntry() {
@@ -167,8 +161,7 @@ void Game::scoreboardEntry() {
     }
 }
 
-void Game::resetGame()
-{
+void Game::resetGame() {
     initTextStrings();
     gameOver = false;
     snakeActive = false;
@@ -179,8 +172,7 @@ void Game::resetGame()
     growSnake = false; 
 }
 
-void Game::updateCollision()
-{
+void Game::updateCollision() {
     if (snake.empty()) {
         return; // Nichts zu überprüfen, wenn die Schlange leer ist
     }
@@ -191,27 +183,22 @@ void Game::updateCollision()
         snake.front().y * gb::blockSize + gb::yOffset);
 
     if (fruitPosition == newHeadPositionFloat) {
-        std::cout << "Kollision entdeckt, neue Frucht wird erzeugt\n"; // DEBUG
         playerScore++;
         activeScoreText.setString("PUNKTE: " + std::to_string(playerScore));
         spawnFruit();  // Erzeuge eine neue Frucht
         growSnake = true; // Schlange soll wachsen
     }
-
     // Kollisionsüberprüfung mit der Wand
     sf::Vector2i headPosition = snake.front();
     if (headPosition.x < 0 || headPosition.x >= gb::arenaWidth ||
         headPosition.y < 0 || headPosition.y >= gb::arenaHeight) {
-        std::cout << "Kollision mit der Wand! \n"; // DEBUG
         finalScoreText.setString("PUNKTE: " + std::to_string(playerScore));
         gameOver = true;
         return;
     }
-
     // Kollisionsüberprüfung mit dem eigenen Körper
     for (size_t i = 1; i < snake.size(); ++i) {
         if (headPosition == snake[i]) {
-            std::cout << "Kollision mit dem eigenen Körper! \n"; // DEBUG
             finalScoreText.setString("PUNKTE: " + std::to_string(playerScore));
             gameOver = true;
             return;
@@ -220,20 +207,17 @@ void Game::updateCollision()
 }
 
 // UPDATE
-void Game::updateFruit()
-{
+void Game::updateFruit() {
     if (!fruitActive) {
         spawnFruit();  // Frucht erzeugen
         fruitActive = true;
     }
 }
 
-void Game::updateSnake()
-{
+void Game::updateSnake() {
     if (!snakeActive) {
         spawnSnake();
     }
-
     moveInterval = sf::seconds(0.2f);
     if (moveClock.getElapsedTime() >= moveInterval) {
         if (!snake.empty()) {
@@ -258,8 +242,7 @@ void Game::updateSnake()
 }
 
 // RENDER
-void Game::renderArena(sf::RenderWindow& window)
-{
+void Game::renderArena(sf::RenderWindow& window) {
     for (int i = 0; i < gb::arenaHeight; ++i) {
         for (int j = 0; j < gb::arenaWidth; ++j) {
             sf::RectangleShape block(sf::Vector2f(gb::blockSize, gb::blockSize));
@@ -269,19 +252,16 @@ void Game::renderArena(sf::RenderWindow& window)
                 block.setFillColor(gb::colArena1);
             else
                 block.setFillColor(gb::colArena2);
-
             window.draw(block);
         }
     }
 }
 
-void Game::renderFruit(sf::RenderWindow& window)
-{
+void Game::renderFruit(sf::RenderWindow& window) {
     window.draw(fruit);
 }
 
-void Game::renderSnake(sf::RenderWindow& window)
-{
+void Game::renderSnake(sf::RenderWindow& window) {
     int segmentCounter = 0;
     for (const auto& segment : snake) {
         sf::RectangleShape snakeSegment(sf::Vector2f(gb::blockSize, gb::blockSize));
@@ -293,8 +273,7 @@ void Game::renderSnake(sf::RenderWindow& window)
     }
 }
 
-sf::Vector2f Game::getScreenPosition(float x, float y)
-{
+sf::Vector2f Game::getScreenPosition(float x, float y) {
     x = x * gb::blockSize + gb::xOffset;
     y = y * gb::blockSize + gb::yOffset;
     return sf::Vector2f(x, y);

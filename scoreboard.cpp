@@ -1,13 +1,11 @@
 // Header-Dateien
 #include "scoreboard.h"
-#include "global_variables.h"
-#include "global_functions.h"
+#include "global.h"
 
 // PUBLIC
 Scoreboard::Scoreboard() {
     initTextStrings();
     loadScores();
-    std::cout << "Scoreboard initialisert \n"; //DEBUG
 }
 
 // EVA
@@ -76,8 +74,7 @@ void Scoreboard::saveScores() {
     }
 }
 
-void Scoreboard::clearScores()
-{
+void Scoreboard::clearScores() {
     scores.clear(); // Löscht alle Einträge im Scoreboard
     std::ofstream file("highscores.txt", std::ofstream::trunc); // Leert die Datei
     file.close();
@@ -89,8 +86,7 @@ void Scoreboard::updateTextColors() {
     returnText.setFillColor(selectedScoreboardItem == 0 ? gb::colTextOn : gb::colTextOff);
 }
 
-void Scoreboard::renderText(sf::RenderWindow& window)
-{
+void Scoreboard::renderText(sf::RenderWindow& window) {
     window.draw(titleText);
     window.draw(deleteText);
     window.draw(returnText);

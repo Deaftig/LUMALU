@@ -8,7 +8,6 @@
 // Bibliotheken
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <iostream>
 
 // Klasse Game
 class Game {
@@ -46,12 +45,10 @@ private:
 	int playerScore = 0;
 	bool growSnake = false;
 
-	// EVA
 	// Eingabe
 	int processState(sf::Event& event);
 	int processState_gameOver(sf::Event& event);
 	// Verarbeitung
-	void resetGame();
 	void updateCollision();
 	void updateFruit();
 	void updateSnake();
@@ -59,15 +56,13 @@ private:
 	void renderArena(sf::RenderWindow& window);
 	void renderFruit(sf::RenderWindow& window);
 	void renderSnake(sf::RenderWindow& window);
-
 	// Funktionen
-
+	void resetGame();
 	void spawnFruit();
 	void spawnSnake();
 	void scoreboardEntry();
 	sf::Vector2f getScreenPosition(float x, float y);
 	void initTextStrings();
 	void initCenteredText(sf::Text& text, const std::string& string, unsigned int size, sf::Color color, sf::Vector2f position);
-
 };
 #endif

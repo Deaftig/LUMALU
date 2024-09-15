@@ -1,45 +1,61 @@
-// Header Guards
+// Header Guards: Verhindert mehrfaches Einbinden der Header-Datei während der Kompilierung
 #ifndef ENGINE
 #define ENGINE
 
-// Header-Dateien
-#include "menu.h"
-#include "game.h"
-#include "scoreboard.h"
+// Header-Dateien: Importieren von benötigten Modulen und anderen Header-Dateien
+#include "menu.h"         // Enthält die Deklarationen für das Menü
+#include "game.h"         // Enthält die Deklarationen für die Spiel-Logik
+#include "scoreboard.h"   // Enthält die Deklarationen für ie Bestenliste
 
-// Bibliotheken
-#include <SFML/Graphics.hpp>
-#include <iostream>
+// Bibliotheken: Externe Bibliotheken für Grafik, Fenster-Management und Konsolenausgabe
+#include <SFML/Graphics.hpp>  // SFML für Grafiken (RenderWindow, etc.)
+#include <SFML/Window.hpp>    // SFML für Fenster und Benutzer-Events
 
-// Klasse Engine
+// Definition der Klasse Engine, die die Hauptlogik des Programms enthält
 class Engine {
 public:
-    // Instanzen
-    Menu menu;
-    Game game;
-    Scoreboard scoreboard;
-    sf::RenderWindow window;
-    sf::Event event;
-    sf::Font font;
-    sf::Clock clock;
-    sf::Time time;
+    // Instanzen: Objekte anderer Klassen, die in der Engine verwendet werden
+    Menu menu;               // Objekt für das Hauptmenü
+    Game game;               // Objekt für die Spiellogik
+    Scoreboard scoreboard;   // Objekt für die Anzeigetafel
 
-    // Variablen
-    enum State { STATE_MENU, STATE_PLAY, STATE_SCOREBOARD};
-    State currentState = STATE_MENU;
+    // SFML-Objekte für die Verwaltung von Fenstern und Ereignissen
+    sf::RenderWindow window; // Hauptfenster, in dem das Spiel dargestellt wird
+    sf::Event event;         // Verwaltung von Benutzerereignissen (Tastatureingaben, Maus, etc.)
+    sf::Font font;           // Schriftart für Textelemente im Spiel
+    sf::Clock clock;         // Uhr für das Steuern der Hauptschleife
+    sf::Time time;           // Zeitvariable für das Steuern der Hauptschleife
 
-    // Constructor
+    // Spielzustände: Enum zur Verwaltung der verschiedenen Zustände des Spiels
+    enum State {
+        STATE_MENU,          // Menü
+        STATE_PLAY,          // Spiel
+        STATE_SCOREBOARD     // Bestenliste
+    };
+    State currentState = STATE_MENU; // Aktueller Zustand, initialisiert mit dem Menü
+
+    // Konstruktor: Initialisiert ein Engine-Objekt
     Engine();
 
-    // Hauptschleife
-    void run();   
+    // Hauptschleife des Spiels: Hier wird die Logik wiederholt, bis das Programm beendet wird
+    void run();
 
-    // EVA
-    void input();
-    void update();
-    void render();
+    // EVA-Prinzip (Eingabe, Verarbeitung, Ausgabe):
+    void input();    // Funktion zur Verarbeitung von Eingaben
+    void update();   // Funktion zur Aktualisierung der Spielzustände
+    void render();   // Funktion zur Darstellung des aktuellen Zustands im Fenster
 
-    // Funktionen
+    // Initialisierung des Fensters
     void initWindow();
 };
-#endif
+#endif // Ende der Header Guards
+
+/*
+[engine.h] enthält die Deklarationen für die Engine-Klasse, die die Hauptlogik des Programms verwaltet.
+Die Header Guards am Anfang verhindern, dass diese Header-Datei mehrfach in den Kompilierungsprozess
+eingebunden wird.
+
+Das Einbinden von "menu.h", "game.h" und "scoreboard.h" ermöglicht der Engine, auf das Hauptmenü,
+die Spiel-Logik und die Bestenliste zuzugreifen. Die SFML-Bibliotheken werden verwendet, um
+Grafiken, Fenster und Ereignisse zu verwalten.
+*/
