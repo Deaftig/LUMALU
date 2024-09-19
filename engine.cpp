@@ -5,7 +5,7 @@
 // Konstruktor der Engine-Klasse: Initialisiert die Engine
 Engine::Engine() {
     initWindow();                // Fenster initialisieren
-    game.setScoreboard(scoreboard); // Setzt das Punktesystem für das Spiel
+    game.setScoreboard(scoreboard); // Setzt die Verknüpfung von Game zu Scoreboard
 }
 
 // Hauptschleife der Engine: Führt das Spiel aus, solange das Fenster geöffnet ist
@@ -78,9 +78,9 @@ void Engine::render() {
 
 // Fenster initialisieren: Erzeugt das Hauptfenster des Spiels
 void Engine::initWindow() {
-    /*Erstelle ein Fenster mit der vordefinierten Größe aus "global.h", nenne es "SNAKE von LUMALU",
+    /*Erstelle ein Fenster mit der vordefinierten Größe aus "global.h", nenne es "SNAKE",
      setze keinen Stil (keine Taskbar, Vollbildschirm, veränderbare Größe, etc.)*/
-    window.create(sf::VideoMode(gb::winWidth, gb::winHeight), "SNAKE von LUMALU", sf::Style::None);
+    window.create(sf::VideoMode(gb::winWidth, gb::winHeight), "SNAKE", sf::Style::None);
 }
 
 /*

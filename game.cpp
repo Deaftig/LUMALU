@@ -1,9 +1,6 @@
 // Header-Dateien
-#include "scoreboard.h"
 #include "game.h"
 #include "global.h"
-
-#include <iostream>
 
 // PUBLIC
 Game::Game() {
@@ -138,12 +135,9 @@ void Game::resetGame() {
 }
 
 void Game::updateCollision() {
-    if (snake.empty()) return;  // Nichts zu überprüfen, wenn die Schlange leer ist
-
     // Kollision mit der Frucht überprüfen
     sf::Vector2f fruitPosition = fruit.getPosition();
-    sf::Vector2f newHeadPositionFloat(snake.front().x * gb::blockSize + gb::xOffset,
-        snake.front().y * gb::blockSize + gb::yOffset);
+    sf::Vector2f newHeadPositionFloat(getScreenPosition(snake.front().x,snake.front().y));
 
     if (fruitPosition == newHeadPositionFloat) {
         playerScore++;  // Punktestand erhöhen

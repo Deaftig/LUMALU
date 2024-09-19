@@ -7,7 +7,6 @@
 
 // Bibliotheken: Einbinden der SFML-Bibliothek und Vektoren
 #include <SFML/Graphics.hpp>
-#include <vector>
 
 // Klasse Game: Verwaltet die Spiellogik, wie Schlange, Frucht und Punkte
 class Game {
