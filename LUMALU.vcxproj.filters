@@ -41,7 +41,7 @@
     <ClInclude Include="menu.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="globals.h">
+    <ClInclude Include="global.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="game.h">
